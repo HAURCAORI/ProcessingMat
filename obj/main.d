@@ -134,4 +134,9 @@ obj/main.o: src/main.cpp /usr/include/stdc-predef.h include/main.h \
  /usr/include/c++/7/bits/locale_facets.tcc \
  /usr/include/c++/7/bits/basic_ios.tcc \
  /usr/include/c++/7/bits/ostream.tcc /usr/include/c++/7/istream \
- /usr/include/c++/7/bits/istream.tcc
+ /usr/include/c++/7/bits/istream.tcc \
+ /usr/include/x86_64-linux-gnu/sys/ipc.h \
+ /usr/include/x86_64-linux-gnu/bits/ipctypes.h \
+ /usr/include/x86_64-linux-gnu/bits/ipc.h \
+ /usr/include/x86_64-linux-gnu/sys/shm.h \
+ /usr/include/x86_64-linux-gnu/bits/shm.h
