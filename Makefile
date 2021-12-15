@@ -4,13 +4,14 @@ CC = g++
 CXXFLAGS = -Wall -O2
 
 # 링커 옵션
-LDFLAGS =
+LDFLAGS = 
 
 # 헤더파일 경로
 INCLUDE = -Iinclude/
 
 # 소스 파일 디렉토리
 SRC_DIR = ./src
+SRC_LIBRARY_ALGLIB_DIR = ./library/ALGLIB
 
 # 오브젝트 파일 디렉토리
 OBJ_DIR = ./obj
@@ -23,8 +24,7 @@ TARGET = main
 # wildcard 로 SRC_DIR 에서 *.cc 로 된 파일들 목록을 뽑아낸 뒤에
 # notdir 로 파일 이름만 뽑아낸다.
 # (e.g SRCS 는 foo.cc bar.cc main.cc 가 된다.)
-SRCS = $(notdir $(wildcard $(SRC_DIR)/*.cpp))
-
+SRCS = $(notdir $(wildcard $(SRC_DIR)/*.cpp)) $(notdir $(wildcard $(SRC_LIBRARY_ALGLIB_DIR)/*.cpp))
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
 
@@ -37,8 +37,11 @@ all: main
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	$(CC) $(CXXFLAGS) $(INCLUDE) -c $< -o $@ -MD $(LDFLAGS)
 
+$(OBJ_DIR)/%.o : $(SRC_LIBRARY_ALGLIB_DIR)/%.cpp
+	$(CC) $(CXXFLAGS) -c $< -o $@ -MD $(LDFLAGS)
+
 $(TARGET) : $(OBJECTS)
-	$(CC) $(CXXFLAGS) -pthread $(OBJECTS) -o $(TARGET_DIR)/$(TARGET) $(LDFLAGS)
+	$(CC) $(CXXFLAGS) $(OBJECTS) -o $(TARGET_DIR)/$(TARGET) $(LDFLAGS)
 
 .PHONY: clean all
 clean:
