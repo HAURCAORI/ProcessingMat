@@ -15,6 +15,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setLabel(const QString);
+    void setImage(int width, int height, const uchar *data);
 private:
     Ui::MainWindow *ui;
 };

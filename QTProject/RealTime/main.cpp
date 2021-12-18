@@ -17,6 +17,13 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+    typedef Simd::View<Simd::Allocator> View;
+    View view(100,100, View::Bgr24);
+    for(int i = 0 ; i < 100; i++) {
+        std::cout << std::hex << view.data[i] << std::endl;
+    }
+    w.setImage(100,100, (uchar*) view.data);
     /*
     int shmid;
     datas *d;
