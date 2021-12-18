@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = RealTime1.0.0
-DISTDIR = /tmp/guest-2attj1/ProcessingMat/QTProject/build-RealTime-Desktop-Debug/.tmp/RealTime1.0.0
+DISTDIR = /tmp/guest-hgb05r/ProcessingMat/QTProject/build-RealTime-Desktop-Debug/.tmp/RealTime1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -51,9 +51,427 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../RealTime/main.cpp \
-		../RealTime/mainwindow.cpp moc_mainwindow.cpp
+		../RealTime/mainwindow.cpp \
+		../RealTime/Simd/SimdAvx1SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdAvx1Svm.cpp \
+		../RealTime/Simd/SimdAvx2AbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdAvx2AbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdAvx2AddFeatureDifference.cpp \
+		../RealTime/Simd/SimdAvx2AlphaBlending.cpp \
+		../RealTime/Simd/SimdAvx2Background.cpp \
+		../RealTime/Simd/SimdAvx2BgraToGray.cpp \
+		../RealTime/Simd/SimdAvx2BgraToYuv.cpp \
+		../RealTime/Simd/SimdAvx2BgrToBgra.cpp \
+		../RealTime/Simd/SimdAvx2BgrToGray.cpp \
+		../RealTime/Simd/SimdAvx2BgrToYuv.cpp \
+		../RealTime/Simd/SimdAvx2Binarization.cpp \
+		../RealTime/Simd/SimdAvx2Conditional.cpp \
+		../RealTime/Simd/SimdAvx2DeinterleaveUv.cpp \
+		../RealTime/Simd/SimdAvx2EdgeBackground.cpp \
+		../RealTime/Simd/SimdAvx2Fill.cpp \
+		../RealTime/Simd/SimdAvx2GaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdAvx2GrayToBgr.cpp \
+		../RealTime/Simd/SimdAvx2GrayToBgra.cpp \
+		../RealTime/Simd/SimdAvx2Histogram.cpp \
+		../RealTime/Simd/SimdAvx2Hog.cpp \
+		../RealTime/Simd/SimdAvx2Interference.cpp \
+		../RealTime/Simd/SimdAvx2InterleaveUv.cpp \
+		../RealTime/Simd/SimdAvx2Laplace.cpp \
+		../RealTime/Simd/SimdAvx2Lbp.cpp \
+		../RealTime/Simd/SimdAvx2MedianFilter.cpp \
+		../RealTime/Simd/SimdAvx2Operation.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray2x2.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray3x3.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray4x4.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray5x5.cpp \
+		../RealTime/Simd/SimdAvx2Reorder.cpp \
+		../RealTime/Simd/SimdAvx2ResizeBilinear.cpp \
+		../RealTime/Simd/SimdAvx2Segmentation.cpp \
+		../RealTime/Simd/SimdAvx2ShiftBilinear.cpp \
+		../RealTime/Simd/SimdAvx2Sobel.cpp \
+		../RealTime/Simd/SimdAvx2SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdAvx2Statistic.cpp \
+		../RealTime/Simd/SimdAvx2StretchGray2x2.cpp \
+		../RealTime/Simd/SimdAvx2Texture.cpp \
+		../RealTime/Simd/SimdAvx2YuvToBgr.cpp \
+		../RealTime/Simd/SimdAvx2YuvToBgra.cpp \
+		../RealTime/Simd/SimdAvx2YuvToHue.cpp \
+		../RealTime/Simd/SimdBaseAbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdBaseAbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdBaseAddFeatureDifference.cpp \
+		../RealTime/Simd/SimdBaseAlphaBlending.cpp \
+		../RealTime/Simd/SimdBaseBackground.cpp \
+		../RealTime/Simd/SimdBaseBayerToBgr.cpp \
+		../RealTime/Simd/SimdBaseBayerToBgra.cpp \
+		../RealTime/Simd/SimdBaseBgraToBayer.cpp \
+		../RealTime/Simd/SimdBaseBgraToBgr.cpp \
+		../RealTime/Simd/SimdBaseBgraToGray.cpp \
+		../RealTime/Simd/SimdBaseBgraToYuv.cpp \
+		../RealTime/Simd/SimdBaseBgrToBayer.cpp \
+		../RealTime/Simd/SimdBaseBgrToBgra.cpp \
+		../RealTime/Simd/SimdBaseBgrToGray.cpp \
+		../RealTime/Simd/SimdBaseBgrToHsl.cpp \
+		../RealTime/Simd/SimdBaseBgrToHsv.cpp \
+		../RealTime/Simd/SimdBaseBgrToYuv.cpp \
+		../RealTime/Simd/SimdBaseBinarization.cpp \
+		../RealTime/Simd/SimdBaseConditional.cpp \
+		../RealTime/Simd/SimdBaseCopy.cpp \
+		../RealTime/Simd/SimdBaseCrc32.cpp \
+		../RealTime/Simd/SimdBaseDeinterleaveUv.cpp \
+		../RealTime/Simd/SimdBaseEdgeBackground.cpp \
+		../RealTime/Simd/SimdBaseFill.cpp \
+		../RealTime/Simd/SimdBaseGaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdBaseGrayToBgr.cpp \
+		../RealTime/Simd/SimdBaseGrayToBgra.cpp \
+		../RealTime/Simd/SimdBaseHistogram.cpp \
+		../RealTime/Simd/SimdBaseHog.cpp \
+		../RealTime/Simd/SimdBaseIntegral.cpp \
+		../RealTime/Simd/SimdBaseInterference.cpp \
+		../RealTime/Simd/SimdBaseInterleaveUv.cpp \
+		../RealTime/Simd/SimdBaseLaplace.cpp \
+		../RealTime/Simd/SimdBaseLbp.cpp \
+		../RealTime/Simd/SimdBaseMedianFilter.cpp \
+		../RealTime/Simd/SimdBaseOperation.cpp \
+		../RealTime/Simd/SimdBaseReduceGray2x2.cpp \
+		../RealTime/Simd/SimdBaseReduceGray3x3.cpp \
+		../RealTime/Simd/SimdBaseReduceGray4x4.cpp \
+		../RealTime/Simd/SimdBaseReduceGray5x5.cpp \
+		../RealTime/Simd/SimdBaseReorder.cpp \
+		../RealTime/Simd/SimdBaseResizeBilinear.cpp \
+		../RealTime/Simd/SimdBaseSegmentation.cpp \
+		../RealTime/Simd/SimdBaseShiftBilinear.cpp \
+		../RealTime/Simd/SimdBaseSobel.cpp \
+		../RealTime/Simd/SimdBaseSquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdBaseStatistic.cpp \
+		../RealTime/Simd/SimdBaseStretchGray2x2.cpp \
+		../RealTime/Simd/SimdBaseSvm.cpp \
+		../RealTime/Simd/SimdBaseTexture.cpp \
+		../RealTime/Simd/SimdBaseYuvToBgr.cpp \
+		../RealTime/Simd/SimdBaseYuvToBgra.cpp \
+		../RealTime/Simd/SimdBaseYuvToHsl.cpp \
+		../RealTime/Simd/SimdBaseYuvToHsv.cpp \
+		../RealTime/Simd/SimdBaseYuvToHue.cpp \
+		../RealTime/Simd/SimdLib.cpp \
+		../RealTime/Simd/SimdSse1SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdSse1Svm.cpp \
+		../RealTime/Simd/SimdSse2AbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdSse2AbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdSse2AddFeatureDifference.cpp \
+		../RealTime/Simd/SimdSse2AlphaBlending.cpp \
+		../RealTime/Simd/SimdSse2Background.cpp \
+		../RealTime/Simd/SimdSse2BgraToGray.cpp \
+		../RealTime/Simd/SimdSse2BgraToYuv.cpp \
+		../RealTime/Simd/SimdSse2BgrToBgra.cpp \
+		../RealTime/Simd/SimdSse2BgrToGray.cpp \
+		../RealTime/Simd/SimdSse2Binarization.cpp \
+		../RealTime/Simd/SimdSse2Conditional.cpp \
+		../RealTime/Simd/SimdSse2DeinterleaveUv.cpp \
+		../RealTime/Simd/SimdSse2EdgeBackground.cpp \
+		../RealTime/Simd/SimdSse2Fill.cpp \
+		../RealTime/Simd/SimdSse2GaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdSse2GrayToBgra.cpp \
+		../RealTime/Simd/SimdSse2Histogram.cpp \
+		../RealTime/Simd/SimdSse2Hog.cpp \
+		../RealTime/Simd/SimdSse2Interference.cpp \
+		../RealTime/Simd/SimdSse2InterleaveUv.cpp \
+		../RealTime/Simd/SimdSse2Laplace.cpp \
+		../RealTime/Simd/SimdSse2Lbp.cpp \
+		../RealTime/Simd/SimdSse2MedianFilter.cpp \
+		../RealTime/Simd/SimdSse2Operation.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray2x2.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray3x3.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray4x4.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray5x5.cpp \
+		../RealTime/Simd/SimdSse2Reorder.cpp \
+		../RealTime/Simd/SimdSse2ResizeBilinear.cpp \
+		../RealTime/Simd/SimdSse2Segmentation.cpp \
+		../RealTime/Simd/SimdSse2ShiftBilinear.cpp \
+		../RealTime/Simd/SimdSse2Sobel.cpp \
+		../RealTime/Simd/SimdSse2SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdSse2Statistic.cpp \
+		../RealTime/Simd/SimdSse2StretchGray2x2.cpp \
+		../RealTime/Simd/SimdSse2Texture.cpp \
+		../RealTime/Simd/SimdSse2YuvToBgra.cpp \
+		../RealTime/Simd/SimdSse2YuvToHue.cpp \
+		../RealTime/Simd/SimdSse41Segmentation.cpp \
+		../RealTime/Simd/SimdSse42Crc32.cpp \
+		../RealTime/Simd/SimdSsse3AlphaBlending.cpp \
+		../RealTime/Simd/SimdSsse3BgraToBayer.cpp \
+		../RealTime/Simd/SimdSsse3BgraToBgr.cpp \
+		../RealTime/Simd/SimdSsse3BgraToYuv.cpp \
+		../RealTime/Simd/SimdSsse3BgrToBayer.cpp \
+		../RealTime/Simd/SimdSsse3BgrToBgra.cpp \
+		../RealTime/Simd/SimdSsse3BgrToGray.cpp \
+		../RealTime/Simd/SimdSsse3BgrToYuv.cpp \
+		../RealTime/Simd/SimdSsse3GaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdSsse3GrayToBgr.cpp \
+		../RealTime/Simd/SimdSsse3Laplace.cpp \
+		../RealTime/Simd/SimdSsse3ReduceGray2x2.cpp \
+		../RealTime/Simd/SimdSsse3ReduceGray4x4.cpp \
+		../RealTime/Simd/SimdSsse3Reorder.cpp \
+		../RealTime/Simd/SimdSsse3ResizeBilinear.cpp \
+		../RealTime/Simd/SimdSsse3Sobel.cpp \
+		../RealTime/Simd/SimdSsse3SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdSsse3Texture.cpp \
+		../RealTime/Simd/SimdSsse3YuvToBgr.cpp \
+		../RealTime/Simd/SimdVmxAbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdVmxAbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdVmxAddFeatureDifference.cpp \
+		../RealTime/Simd/SimdVmxAlphaBlending.cpp \
+		../RealTime/Simd/SimdVmxBackground.cpp \
+		../RealTime/Simd/SimdVmxBgraToBayer.cpp \
+		../RealTime/Simd/SimdVmxBgraToBgr.cpp \
+		../RealTime/Simd/SimdVmxBgraToGray.cpp \
+		../RealTime/Simd/SimdVmxBgraToYuv.cpp \
+		../RealTime/Simd/SimdVmxBgrToBayer.cpp \
+		../RealTime/Simd/SimdVmxBgrToBgra.cpp \
+		../RealTime/Simd/SimdVmxBgrToGray.cpp \
+		../RealTime/Simd/SimdVmxBgrToYuv.cpp \
+		../RealTime/Simd/SimdVmxBinarization.cpp \
+		../RealTime/Simd/SimdVmxConditional.cpp \
+		../RealTime/Simd/SimdVmxDeinterleaveUv.cpp \
+		../RealTime/Simd/SimdVmxEdgeBackground.cpp \
+		../RealTime/Simd/SimdVmxFill.cpp \
+		../RealTime/Simd/SimdVmxGaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdVmxGrayToBgr.cpp \
+		../RealTime/Simd/SimdVmxGrayToBgra.cpp \
+		../RealTime/Simd/SimdVmxHistogram.cpp \
+		../RealTime/Simd/SimdVmxInterference.cpp \
+		../RealTime/Simd/SimdVmxInterleaveUv.cpp \
+		../RealTime/Simd/SimdVmxLaplace.cpp \
+		../RealTime/Simd/SimdVmxLbp.cpp \
+		../RealTime/Simd/SimdVmxMedianFilter.cpp \
+		../RealTime/Simd/SimdVmxOperation.cpp \
+		../RealTime/Simd/SimdVmxReduceGray2x2.cpp \
+		../RealTime/Simd/SimdVmxReduceGray3x3.cpp \
+		../RealTime/Simd/SimdVmxReduceGray4x4.cpp \
+		../RealTime/Simd/SimdVmxReduceGray5x5.cpp \
+		../RealTime/Simd/SimdVmxReorder.cpp \
+		../RealTime/Simd/SimdVmxResizeBilinear.cpp \
+		../RealTime/Simd/SimdVmxSegmentation.cpp \
+		../RealTime/Simd/SimdVmxShiftBilinear.cpp \
+		../RealTime/Simd/SimdVmxSobel.cpp \
+		../RealTime/Simd/SimdVmxSquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdVmxStatistic.cpp \
+		../RealTime/Simd/SimdVmxStretchGray2x2.cpp \
+		../RealTime/Simd/SimdVmxTexture.cpp \
+		../RealTime/Simd/SimdVmxYuvToBgr.cpp \
+		../RealTime/Simd/SimdVmxYuvToBgra.cpp \
+		../RealTime/Simd/SimdVsxHog.cpp \
+		../RealTime/Simd/SimdVsxSquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdVsxSvm.cpp \
+		../RealTime/Simd/SimdVsxYuvToHue.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		SimdAvx1SquaredDifferenceSum.o \
+		SimdAvx1Svm.o \
+		SimdAvx2AbsDifferenceSum.o \
+		SimdAvx2AbsGradientSaturatedSum.o \
+		SimdAvx2AddFeatureDifference.o \
+		SimdAvx2AlphaBlending.o \
+		SimdAvx2Background.o \
+		SimdAvx2BgraToGray.o \
+		SimdAvx2BgraToYuv.o \
+		SimdAvx2BgrToBgra.o \
+		SimdAvx2BgrToGray.o \
+		SimdAvx2BgrToYuv.o \
+		SimdAvx2Binarization.o \
+		SimdAvx2Conditional.o \
+		SimdAvx2DeinterleaveUv.o \
+		SimdAvx2EdgeBackground.o \
+		SimdAvx2Fill.o \
+		SimdAvx2GaussianBlur3x3.o \
+		SimdAvx2GrayToBgr.o \
+		SimdAvx2GrayToBgra.o \
+		SimdAvx2Histogram.o \
+		SimdAvx2Hog.o \
+		SimdAvx2Interference.o \
+		SimdAvx2InterleaveUv.o \
+		SimdAvx2Laplace.o \
+		SimdAvx2Lbp.o \
+		SimdAvx2MedianFilter.o \
+		SimdAvx2Operation.o \
+		SimdAvx2ReduceGray2x2.o \
+		SimdAvx2ReduceGray3x3.o \
+		SimdAvx2ReduceGray4x4.o \
+		SimdAvx2ReduceGray5x5.o \
+		SimdAvx2Reorder.o \
+		SimdAvx2ResizeBilinear.o \
+		SimdAvx2Segmentation.o \
+		SimdAvx2ShiftBilinear.o \
+		SimdAvx2Sobel.o \
+		SimdAvx2SquaredDifferenceSum.o \
+		SimdAvx2Statistic.o \
+		SimdAvx2StretchGray2x2.o \
+		SimdAvx2Texture.o \
+		SimdAvx2YuvToBgr.o \
+		SimdAvx2YuvToBgra.o \
+		SimdAvx2YuvToHue.o \
+		SimdBaseAbsDifferenceSum.o \
+		SimdBaseAbsGradientSaturatedSum.o \
+		SimdBaseAddFeatureDifference.o \
+		SimdBaseAlphaBlending.o \
+		SimdBaseBackground.o \
+		SimdBaseBayerToBgr.o \
+		SimdBaseBayerToBgra.o \
+		SimdBaseBgraToBayer.o \
+		SimdBaseBgraToBgr.o \
+		SimdBaseBgraToGray.o \
+		SimdBaseBgraToYuv.o \
+		SimdBaseBgrToBayer.o \
+		SimdBaseBgrToBgra.o \
+		SimdBaseBgrToGray.o \
+		SimdBaseBgrToHsl.o \
+		SimdBaseBgrToHsv.o \
+		SimdBaseBgrToYuv.o \
+		SimdBaseBinarization.o \
+		SimdBaseConditional.o \
+		SimdBaseCopy.o \
+		SimdBaseCrc32.o \
+		SimdBaseDeinterleaveUv.o \
+		SimdBaseEdgeBackground.o \
+		SimdBaseFill.o \
+		SimdBaseGaussianBlur3x3.o \
+		SimdBaseGrayToBgr.o \
+		SimdBaseGrayToBgra.o \
+		SimdBaseHistogram.o \
+		SimdBaseHog.o \
+		SimdBaseIntegral.o \
+		SimdBaseInterference.o \
+		SimdBaseInterleaveUv.o \
+		SimdBaseLaplace.o \
+		SimdBaseLbp.o \
+		SimdBaseMedianFilter.o \
+		SimdBaseOperation.o \
+		SimdBaseReduceGray2x2.o \
+		SimdBaseReduceGray3x3.o \
+		SimdBaseReduceGray4x4.o \
+		SimdBaseReduceGray5x5.o \
+		SimdBaseReorder.o \
+		SimdBaseResizeBilinear.o \
+		SimdBaseSegmentation.o \
+		SimdBaseShiftBilinear.o \
+		SimdBaseSobel.o \
+		SimdBaseSquaredDifferenceSum.o \
+		SimdBaseStatistic.o \
+		SimdBaseStretchGray2x2.o \
+		SimdBaseSvm.o \
+		SimdBaseTexture.o \
+		SimdBaseYuvToBgr.o \
+		SimdBaseYuvToBgra.o \
+		SimdBaseYuvToHsl.o \
+		SimdBaseYuvToHsv.o \
+		SimdBaseYuvToHue.o \
+		SimdLib.o \
+		SimdSse1SquaredDifferenceSum.o \
+		SimdSse1Svm.o \
+		SimdSse2AbsDifferenceSum.o \
+		SimdSse2AbsGradientSaturatedSum.o \
+		SimdSse2AddFeatureDifference.o \
+		SimdSse2AlphaBlending.o \
+		SimdSse2Background.o \
+		SimdSse2BgraToGray.o \
+		SimdSse2BgraToYuv.o \
+		SimdSse2BgrToBgra.o \
+		SimdSse2BgrToGray.o \
+		SimdSse2Binarization.o \
+		SimdSse2Conditional.o \
+		SimdSse2DeinterleaveUv.o \
+		SimdSse2EdgeBackground.o \
+		SimdSse2Fill.o \
+		SimdSse2GaussianBlur3x3.o \
+		SimdSse2GrayToBgra.o \
+		SimdSse2Histogram.o \
+		SimdSse2Hog.o \
+		SimdSse2Interference.o \
+		SimdSse2InterleaveUv.o \
+		SimdSse2Laplace.o \
+		SimdSse2Lbp.o \
+		SimdSse2MedianFilter.o \
+		SimdSse2Operation.o \
+		SimdSse2ReduceGray2x2.o \
+		SimdSse2ReduceGray3x3.o \
+		SimdSse2ReduceGray4x4.o \
+		SimdSse2ReduceGray5x5.o \
+		SimdSse2Reorder.o \
+		SimdSse2ResizeBilinear.o \
+		SimdSse2Segmentation.o \
+		SimdSse2ShiftBilinear.o \
+		SimdSse2Sobel.o \
+		SimdSse2SquaredDifferenceSum.o \
+		SimdSse2Statistic.o \
+		SimdSse2StretchGray2x2.o \
+		SimdSse2Texture.o \
+		SimdSse2YuvToBgra.o \
+		SimdSse2YuvToHue.o \
+		SimdSse41Segmentation.o \
+		SimdSse42Crc32.o \
+		SimdSsse3AlphaBlending.o \
+		SimdSsse3BgraToBayer.o \
+		SimdSsse3BgraToBgr.o \
+		SimdSsse3BgraToYuv.o \
+		SimdSsse3BgrToBayer.o \
+		SimdSsse3BgrToBgra.o \
+		SimdSsse3BgrToGray.o \
+		SimdSsse3BgrToYuv.o \
+		SimdSsse3GaussianBlur3x3.o \
+		SimdSsse3GrayToBgr.o \
+		SimdSsse3Laplace.o \
+		SimdSsse3ReduceGray2x2.o \
+		SimdSsse3ReduceGray4x4.o \
+		SimdSsse3Reorder.o \
+		SimdSsse3ResizeBilinear.o \
+		SimdSsse3Sobel.o \
+		SimdSsse3SquaredDifferenceSum.o \
+		SimdSsse3Texture.o \
+		SimdSsse3YuvToBgr.o \
+		SimdVmxAbsDifferenceSum.o \
+		SimdVmxAbsGradientSaturatedSum.o \
+		SimdVmxAddFeatureDifference.o \
+		SimdVmxAlphaBlending.o \
+		SimdVmxBackground.o \
+		SimdVmxBgraToBayer.o \
+		SimdVmxBgraToBgr.o \
+		SimdVmxBgraToGray.o \
+		SimdVmxBgraToYuv.o \
+		SimdVmxBgrToBayer.o \
+		SimdVmxBgrToBgra.o \
+		SimdVmxBgrToGray.o \
+		SimdVmxBgrToYuv.o \
+		SimdVmxBinarization.o \
+		SimdVmxConditional.o \
+		SimdVmxDeinterleaveUv.o \
+		SimdVmxEdgeBackground.o \
+		SimdVmxFill.o \
+		SimdVmxGaussianBlur3x3.o \
+		SimdVmxGrayToBgr.o \
+		SimdVmxGrayToBgra.o \
+		SimdVmxHistogram.o \
+		SimdVmxInterference.o \
+		SimdVmxInterleaveUv.o \
+		SimdVmxLaplace.o \
+		SimdVmxLbp.o \
+		SimdVmxMedianFilter.o \
+		SimdVmxOperation.o \
+		SimdVmxReduceGray2x2.o \
+		SimdVmxReduceGray3x3.o \
+		SimdVmxReduceGray4x4.o \
+		SimdVmxReduceGray5x5.o \
+		SimdVmxReorder.o \
+		SimdVmxResizeBilinear.o \
+		SimdVmxSegmentation.o \
+		SimdVmxShiftBilinear.o \
+		SimdVmxSobel.o \
+		SimdVmxSquaredDifferenceSum.o \
+		SimdVmxStatistic.o \
+		SimdVmxStretchGray2x2.o \
+		SimdVmxTexture.o \
+		SimdVmxYuvToBgr.o \
+		SimdVmxYuvToBgra.o \
+		SimdVsxHog.o \
+		SimdVsxSquaredDifferenceSum.o \
+		SimdVsxSvm.o \
+		SimdVsxYuvToHue.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -109,6 +527,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../RealTime/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -128,8 +547,252 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../RealTime/RealTime.pro ../RealTime/mainwindow.h ../RealTime/main.cpp \
-		../RealTime/mainwindow.cpp
+		../RealTime/RealTime.pro ../RealTime/mainwindow.h \
+		../RealTime/Simd/SimdAllocator.hpp \
+		../RealTime/Simd/SimdAvx1.h \
+		../RealTime/Simd/SimdAvx2.h \
+		../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdEnable.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdFrame.hpp \
+		../RealTime/Simd/SimdHelp.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLib.hpp \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdPixel.hpp \
+		../RealTime/Simd/SimdPoint.hpp \
+		../RealTime/Simd/SimdPyramid.hpp \
+		../RealTime/Simd/SimdRectangle.hpp \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdSse1.h \
+		../RealTime/Simd/SimdSse2.h \
+		../RealTime/Simd/SimdSse41.h \
+		../RealTime/Simd/SimdSse42.h \
+		../RealTime/Simd/SimdSsse3.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdVersion.h \
+		../RealTime/Simd/SimdView.hpp \
+		../RealTime/Simd/SimdVmx.h \
+		../RealTime/Simd/SimdVsx.h ../RealTime/main.cpp \
+		../RealTime/mainwindow.cpp \
+		../RealTime/Simd/SimdAvx1SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdAvx1Svm.cpp \
+		../RealTime/Simd/SimdAvx2AbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdAvx2AbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdAvx2AddFeatureDifference.cpp \
+		../RealTime/Simd/SimdAvx2AlphaBlending.cpp \
+		../RealTime/Simd/SimdAvx2Background.cpp \
+		../RealTime/Simd/SimdAvx2BgraToGray.cpp \
+		../RealTime/Simd/SimdAvx2BgraToYuv.cpp \
+		../RealTime/Simd/SimdAvx2BgrToBgra.cpp \
+		../RealTime/Simd/SimdAvx2BgrToGray.cpp \
+		../RealTime/Simd/SimdAvx2BgrToYuv.cpp \
+		../RealTime/Simd/SimdAvx2Binarization.cpp \
+		../RealTime/Simd/SimdAvx2Conditional.cpp \
+		../RealTime/Simd/SimdAvx2DeinterleaveUv.cpp \
+		../RealTime/Simd/SimdAvx2EdgeBackground.cpp \
+		../RealTime/Simd/SimdAvx2Fill.cpp \
+		../RealTime/Simd/SimdAvx2GaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdAvx2GrayToBgr.cpp \
+		../RealTime/Simd/SimdAvx2GrayToBgra.cpp \
+		../RealTime/Simd/SimdAvx2Histogram.cpp \
+		../RealTime/Simd/SimdAvx2Hog.cpp \
+		../RealTime/Simd/SimdAvx2Interference.cpp \
+		../RealTime/Simd/SimdAvx2InterleaveUv.cpp \
+		../RealTime/Simd/SimdAvx2Laplace.cpp \
+		../RealTime/Simd/SimdAvx2Lbp.cpp \
+		../RealTime/Simd/SimdAvx2MedianFilter.cpp \
+		../RealTime/Simd/SimdAvx2Operation.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray2x2.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray3x3.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray4x4.cpp \
+		../RealTime/Simd/SimdAvx2ReduceGray5x5.cpp \
+		../RealTime/Simd/SimdAvx2Reorder.cpp \
+		../RealTime/Simd/SimdAvx2ResizeBilinear.cpp \
+		../RealTime/Simd/SimdAvx2Segmentation.cpp \
+		../RealTime/Simd/SimdAvx2ShiftBilinear.cpp \
+		../RealTime/Simd/SimdAvx2Sobel.cpp \
+		../RealTime/Simd/SimdAvx2SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdAvx2Statistic.cpp \
+		../RealTime/Simd/SimdAvx2StretchGray2x2.cpp \
+		../RealTime/Simd/SimdAvx2Texture.cpp \
+		../RealTime/Simd/SimdAvx2YuvToBgr.cpp \
+		../RealTime/Simd/SimdAvx2YuvToBgra.cpp \
+		../RealTime/Simd/SimdAvx2YuvToHue.cpp \
+		../RealTime/Simd/SimdBaseAbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdBaseAbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdBaseAddFeatureDifference.cpp \
+		../RealTime/Simd/SimdBaseAlphaBlending.cpp \
+		../RealTime/Simd/SimdBaseBackground.cpp \
+		../RealTime/Simd/SimdBaseBayerToBgr.cpp \
+		../RealTime/Simd/SimdBaseBayerToBgra.cpp \
+		../RealTime/Simd/SimdBaseBgraToBayer.cpp \
+		../RealTime/Simd/SimdBaseBgraToBgr.cpp \
+		../RealTime/Simd/SimdBaseBgraToGray.cpp \
+		../RealTime/Simd/SimdBaseBgraToYuv.cpp \
+		../RealTime/Simd/SimdBaseBgrToBayer.cpp \
+		../RealTime/Simd/SimdBaseBgrToBgra.cpp \
+		../RealTime/Simd/SimdBaseBgrToGray.cpp \
+		../RealTime/Simd/SimdBaseBgrToHsl.cpp \
+		../RealTime/Simd/SimdBaseBgrToHsv.cpp \
+		../RealTime/Simd/SimdBaseBgrToYuv.cpp \
+		../RealTime/Simd/SimdBaseBinarization.cpp \
+		../RealTime/Simd/SimdBaseConditional.cpp \
+		../RealTime/Simd/SimdBaseCopy.cpp \
+		../RealTime/Simd/SimdBaseCrc32.cpp \
+		../RealTime/Simd/SimdBaseDeinterleaveUv.cpp \
+		../RealTime/Simd/SimdBaseEdgeBackground.cpp \
+		../RealTime/Simd/SimdBaseFill.cpp \
+		../RealTime/Simd/SimdBaseGaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdBaseGrayToBgr.cpp \
+		../RealTime/Simd/SimdBaseGrayToBgra.cpp \
+		../RealTime/Simd/SimdBaseHistogram.cpp \
+		../RealTime/Simd/SimdBaseHog.cpp \
+		../RealTime/Simd/SimdBaseIntegral.cpp \
+		../RealTime/Simd/SimdBaseInterference.cpp \
+		../RealTime/Simd/SimdBaseInterleaveUv.cpp \
+		../RealTime/Simd/SimdBaseLaplace.cpp \
+		../RealTime/Simd/SimdBaseLbp.cpp \
+		../RealTime/Simd/SimdBaseMedianFilter.cpp \
+		../RealTime/Simd/SimdBaseOperation.cpp \
+		../RealTime/Simd/SimdBaseReduceGray2x2.cpp \
+		../RealTime/Simd/SimdBaseReduceGray3x3.cpp \
+		../RealTime/Simd/SimdBaseReduceGray4x4.cpp \
+		../RealTime/Simd/SimdBaseReduceGray5x5.cpp \
+		../RealTime/Simd/SimdBaseReorder.cpp \
+		../RealTime/Simd/SimdBaseResizeBilinear.cpp \
+		../RealTime/Simd/SimdBaseSegmentation.cpp \
+		../RealTime/Simd/SimdBaseShiftBilinear.cpp \
+		../RealTime/Simd/SimdBaseSobel.cpp \
+		../RealTime/Simd/SimdBaseSquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdBaseStatistic.cpp \
+		../RealTime/Simd/SimdBaseStretchGray2x2.cpp \
+		../RealTime/Simd/SimdBaseSvm.cpp \
+		../RealTime/Simd/SimdBaseTexture.cpp \
+		../RealTime/Simd/SimdBaseYuvToBgr.cpp \
+		../RealTime/Simd/SimdBaseYuvToBgra.cpp \
+		../RealTime/Simd/SimdBaseYuvToHsl.cpp \
+		../RealTime/Simd/SimdBaseYuvToHsv.cpp \
+		../RealTime/Simd/SimdBaseYuvToHue.cpp \
+		../RealTime/Simd/SimdLib.cpp \
+		../RealTime/Simd/SimdSse1SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdSse1Svm.cpp \
+		../RealTime/Simd/SimdSse2AbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdSse2AbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdSse2AddFeatureDifference.cpp \
+		../RealTime/Simd/SimdSse2AlphaBlending.cpp \
+		../RealTime/Simd/SimdSse2Background.cpp \
+		../RealTime/Simd/SimdSse2BgraToGray.cpp \
+		../RealTime/Simd/SimdSse2BgraToYuv.cpp \
+		../RealTime/Simd/SimdSse2BgrToBgra.cpp \
+		../RealTime/Simd/SimdSse2BgrToGray.cpp \
+		../RealTime/Simd/SimdSse2Binarization.cpp \
+		../RealTime/Simd/SimdSse2Conditional.cpp \
+		../RealTime/Simd/SimdSse2DeinterleaveUv.cpp \
+		../RealTime/Simd/SimdSse2EdgeBackground.cpp \
+		../RealTime/Simd/SimdSse2Fill.cpp \
+		../RealTime/Simd/SimdSse2GaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdSse2GrayToBgra.cpp \
+		../RealTime/Simd/SimdSse2Histogram.cpp \
+		../RealTime/Simd/SimdSse2Hog.cpp \
+		../RealTime/Simd/SimdSse2Interference.cpp \
+		../RealTime/Simd/SimdSse2InterleaveUv.cpp \
+		../RealTime/Simd/SimdSse2Laplace.cpp \
+		../RealTime/Simd/SimdSse2Lbp.cpp \
+		../RealTime/Simd/SimdSse2MedianFilter.cpp \
+		../RealTime/Simd/SimdSse2Operation.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray2x2.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray3x3.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray4x4.cpp \
+		../RealTime/Simd/SimdSse2ReduceGray5x5.cpp \
+		../RealTime/Simd/SimdSse2Reorder.cpp \
+		../RealTime/Simd/SimdSse2ResizeBilinear.cpp \
+		../RealTime/Simd/SimdSse2Segmentation.cpp \
+		../RealTime/Simd/SimdSse2ShiftBilinear.cpp \
+		../RealTime/Simd/SimdSse2Sobel.cpp \
+		../RealTime/Simd/SimdSse2SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdSse2Statistic.cpp \
+		../RealTime/Simd/SimdSse2StretchGray2x2.cpp \
+		../RealTime/Simd/SimdSse2Texture.cpp \
+		../RealTime/Simd/SimdSse2YuvToBgra.cpp \
+		../RealTime/Simd/SimdSse2YuvToHue.cpp \
+		../RealTime/Simd/SimdSse41Segmentation.cpp \
+		../RealTime/Simd/SimdSse42Crc32.cpp \
+		../RealTime/Simd/SimdSsse3AlphaBlending.cpp \
+		../RealTime/Simd/SimdSsse3BgraToBayer.cpp \
+		../RealTime/Simd/SimdSsse3BgraToBgr.cpp \
+		../RealTime/Simd/SimdSsse3BgraToYuv.cpp \
+		../RealTime/Simd/SimdSsse3BgrToBayer.cpp \
+		../RealTime/Simd/SimdSsse3BgrToBgra.cpp \
+		../RealTime/Simd/SimdSsse3BgrToGray.cpp \
+		../RealTime/Simd/SimdSsse3BgrToYuv.cpp \
+		../RealTime/Simd/SimdSsse3GaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdSsse3GrayToBgr.cpp \
+		../RealTime/Simd/SimdSsse3Laplace.cpp \
+		../RealTime/Simd/SimdSsse3ReduceGray2x2.cpp \
+		../RealTime/Simd/SimdSsse3ReduceGray4x4.cpp \
+		../RealTime/Simd/SimdSsse3Reorder.cpp \
+		../RealTime/Simd/SimdSsse3ResizeBilinear.cpp \
+		../RealTime/Simd/SimdSsse3Sobel.cpp \
+		../RealTime/Simd/SimdSsse3SquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdSsse3Texture.cpp \
+		../RealTime/Simd/SimdSsse3YuvToBgr.cpp \
+		../RealTime/Simd/SimdVmxAbsDifferenceSum.cpp \
+		../RealTime/Simd/SimdVmxAbsGradientSaturatedSum.cpp \
+		../RealTime/Simd/SimdVmxAddFeatureDifference.cpp \
+		../RealTime/Simd/SimdVmxAlphaBlending.cpp \
+		../RealTime/Simd/SimdVmxBackground.cpp \
+		../RealTime/Simd/SimdVmxBgraToBayer.cpp \
+		../RealTime/Simd/SimdVmxBgraToBgr.cpp \
+		../RealTime/Simd/SimdVmxBgraToGray.cpp \
+		../RealTime/Simd/SimdVmxBgraToYuv.cpp \
+		../RealTime/Simd/SimdVmxBgrToBayer.cpp \
+		../RealTime/Simd/SimdVmxBgrToBgra.cpp \
+		../RealTime/Simd/SimdVmxBgrToGray.cpp \
+		../RealTime/Simd/SimdVmxBgrToYuv.cpp \
+		../RealTime/Simd/SimdVmxBinarization.cpp \
+		../RealTime/Simd/SimdVmxConditional.cpp \
+		../RealTime/Simd/SimdVmxDeinterleaveUv.cpp \
+		../RealTime/Simd/SimdVmxEdgeBackground.cpp \
+		../RealTime/Simd/SimdVmxFill.cpp \
+		../RealTime/Simd/SimdVmxGaussianBlur3x3.cpp \
+		../RealTime/Simd/SimdVmxGrayToBgr.cpp \
+		../RealTime/Simd/SimdVmxGrayToBgra.cpp \
+		../RealTime/Simd/SimdVmxHistogram.cpp \
+		../RealTime/Simd/SimdVmxInterference.cpp \
+		../RealTime/Simd/SimdVmxInterleaveUv.cpp \
+		../RealTime/Simd/SimdVmxLaplace.cpp \
+		../RealTime/Simd/SimdVmxLbp.cpp \
+		../RealTime/Simd/SimdVmxMedianFilter.cpp \
+		../RealTime/Simd/SimdVmxOperation.cpp \
+		../RealTime/Simd/SimdVmxReduceGray2x2.cpp \
+		../RealTime/Simd/SimdVmxReduceGray3x3.cpp \
+		../RealTime/Simd/SimdVmxReduceGray4x4.cpp \
+		../RealTime/Simd/SimdVmxReduceGray5x5.cpp \
+		../RealTime/Simd/SimdVmxReorder.cpp \
+		../RealTime/Simd/SimdVmxResizeBilinear.cpp \
+		../RealTime/Simd/SimdVmxSegmentation.cpp \
+		../RealTime/Simd/SimdVmxShiftBilinear.cpp \
+		../RealTime/Simd/SimdVmxSobel.cpp \
+		../RealTime/Simd/SimdVmxSquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdVmxStatistic.cpp \
+		../RealTime/Simd/SimdVmxStretchGray2x2.cpp \
+		../RealTime/Simd/SimdVmxTexture.cpp \
+		../RealTime/Simd/SimdVmxYuvToBgr.cpp \
+		../RealTime/Simd/SimdVmxYuvToBgra.cpp \
+		../RealTime/Simd/SimdVsxHog.cpp \
+		../RealTime/Simd/SimdVsxSquaredDifferenceSum.cpp \
+		../RealTime/Simd/SimdVsxSvm.cpp \
+		../RealTime/Simd/SimdVsxYuvToHue.cpp
 QMAKE_TARGET  = RealTime
 DESTDIR       = 
 TARGET        = RealTime
@@ -195,6 +858,7 @@ Makefile: ../RealTime/RealTime.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -273,6 +937,7 @@ Makefile: ../RealTime/RealTime.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -311,8 +976,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../RealTime/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../RealTime/main.cpp ../RealTime/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../RealTime/mainwindow.h ../RealTime/Simd/SimdAllocator.hpp ../RealTime/Simd/SimdAvx1.h ../RealTime/Simd/SimdAvx2.h ../RealTime/Simd/SimdBase.h ../RealTime/Simd/SimdCompare.h ../RealTime/Simd/SimdConfig.h ../RealTime/Simd/SimdConst.h ../RealTime/Simd/SimdConversion.h ../RealTime/Simd/SimdDefs.h ../RealTime/Simd/SimdEnable.h ../RealTime/Simd/SimdExtract.h ../RealTime/Simd/SimdFrame.hpp ../RealTime/Simd/SimdHelp.h ../RealTime/Simd/SimdInit.h ../RealTime/Simd/SimdLib.h ../RealTime/Simd/SimdLib.hpp ../RealTime/Simd/SimdLoad.h ../RealTime/Simd/SimdLog.h ../RealTime/Simd/SimdMath.h ../RealTime/Simd/SimdMemory.h ../RealTime/Simd/SimdPixel.hpp ../RealTime/Simd/SimdPoint.hpp ../RealTime/Simd/SimdPyramid.hpp ../RealTime/Simd/SimdRectangle.hpp ../RealTime/Simd/SimdSet.h ../RealTime/Simd/SimdSse1.h ../RealTime/Simd/SimdSse2.h ../RealTime/Simd/SimdSse41.h ../RealTime/Simd/SimdSse42.h ../RealTime/Simd/SimdSsse3.h ../RealTime/Simd/SimdStore.h ../RealTime/Simd/SimdVersion.h ../RealTime/Simd/SimdView.hpp ../RealTime/Simd/SimdVmx.h ../RealTime/Simd/SimdVsx.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../RealTime/main.cpp ../RealTime/mainwindow.cpp ../RealTime/Simd/SimdAvx1SquaredDifferenceSum.cpp ../RealTime/Simd/SimdAvx1Svm.cpp ../RealTime/Simd/SimdAvx2AbsDifferenceSum.cpp ../RealTime/Simd/SimdAvx2AbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdAvx2AddFeatureDifference.cpp ../RealTime/Simd/SimdAvx2AlphaBlending.cpp ../RealTime/Simd/SimdAvx2Background.cpp ../RealTime/Simd/SimdAvx2BgraToGray.cpp ../RealTime/Simd/SimdAvx2BgraToYuv.cpp ../RealTime/Simd/SimdAvx2BgrToBgra.cpp ../RealTime/Simd/SimdAvx2BgrToGray.cpp ../RealTime/Simd/SimdAvx2BgrToYuv.cpp ../RealTime/Simd/SimdAvx2Binarization.cpp ../RealTime/Simd/SimdAvx2Conditional.cpp ../RealTime/Simd/SimdAvx2DeinterleaveUv.cpp ../RealTime/Simd/SimdAvx2EdgeBackground.cpp ../RealTime/Simd/SimdAvx2Fill.cpp ../RealTime/Simd/SimdAvx2GaussianBlur3x3.cpp ../RealTime/Simd/SimdAvx2GrayToBgr.cpp ../RealTime/Simd/SimdAvx2GrayToBgra.cpp ../RealTime/Simd/SimdAvx2Histogram.cpp ../RealTime/Simd/SimdAvx2Hog.cpp ../RealTime/Simd/SimdAvx2Interference.cpp ../RealTime/Simd/SimdAvx2InterleaveUv.cpp ../RealTime/Simd/SimdAvx2Laplace.cpp ../RealTime/Simd/SimdAvx2Lbp.cpp ../RealTime/Simd/SimdAvx2MedianFilter.cpp ../RealTime/Simd/SimdAvx2Operation.cpp ../RealTime/Simd/SimdAvx2ReduceGray2x2.cpp ../RealTime/Simd/SimdAvx2ReduceGray3x3.cpp ../RealTime/Simd/SimdAvx2ReduceGray4x4.cpp ../RealTime/Simd/SimdAvx2ReduceGray5x5.cpp ../RealTime/Simd/SimdAvx2Reorder.cpp ../RealTime/Simd/SimdAvx2ResizeBilinear.cpp ../RealTime/Simd/SimdAvx2Segmentation.cpp ../RealTime/Simd/SimdAvx2ShiftBilinear.cpp ../RealTime/Simd/SimdAvx2Sobel.cpp ../RealTime/Simd/SimdAvx2SquaredDifferenceSum.cpp ../RealTime/Simd/SimdAvx2Statistic.cpp ../RealTime/Simd/SimdAvx2StretchGray2x2.cpp ../RealTime/Simd/SimdAvx2Texture.cpp ../RealTime/Simd/SimdAvx2YuvToBgr.cpp ../RealTime/Simd/SimdAvx2YuvToBgra.cpp ../RealTime/Simd/SimdAvx2YuvToHue.cpp ../RealTime/Simd/SimdBaseAbsDifferenceSum.cpp ../RealTime/Simd/SimdBaseAbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdBaseAddFeatureDifference.cpp ../RealTime/Simd/SimdBaseAlphaBlending.cpp ../RealTime/Simd/SimdBaseBackground.cpp ../RealTime/Simd/SimdBaseBayerToBgr.cpp ../RealTime/Simd/SimdBaseBayerToBgra.cpp ../RealTime/Simd/SimdBaseBgraToBayer.cpp ../RealTime/Simd/SimdBaseBgraToBgr.cpp ../RealTime/Simd/SimdBaseBgraToGray.cpp ../RealTime/Simd/SimdBaseBgraToYuv.cpp ../RealTime/Simd/SimdBaseBgrToBayer.cpp ../RealTime/Simd/SimdBaseBgrToBgra.cpp ../RealTime/Simd/SimdBaseBgrToGray.cpp ../RealTime/Simd/SimdBaseBgrToHsl.cpp ../RealTime/Simd/SimdBaseBgrToHsv.cpp ../RealTime/Simd/SimdBaseBgrToYuv.cpp ../RealTime/Simd/SimdBaseBinarization.cpp ../RealTime/Simd/SimdBaseConditional.cpp ../RealTime/Simd/SimdBaseCopy.cpp ../RealTime/Simd/SimdBaseCrc32.cpp ../RealTime/Simd/SimdBaseDeinterleaveUv.cpp ../RealTime/Simd/SimdBaseEdgeBackground.cpp ../RealTime/Simd/SimdBaseFill.cpp ../RealTime/Simd/SimdBaseGaussianBlur3x3.cpp ../RealTime/Simd/SimdBaseGrayToBgr.cpp ../RealTime/Simd/SimdBaseGrayToBgra.cpp ../RealTime/Simd/SimdBaseHistogram.cpp ../RealTime/Simd/SimdBaseHog.cpp ../RealTime/Simd/SimdBaseIntegral.cpp ../RealTime/Simd/SimdBaseInterference.cpp ../RealTime/Simd/SimdBaseInterleaveUv.cpp ../RealTime/Simd/SimdBaseLaplace.cpp ../RealTime/Simd/SimdBaseLbp.cpp ../RealTime/Simd/SimdBaseMedianFilter.cpp ../RealTime/Simd/SimdBaseOperation.cpp ../RealTime/Simd/SimdBaseReduceGray2x2.cpp ../RealTime/Simd/SimdBaseReduceGray3x3.cpp ../RealTime/Simd/SimdBaseReduceGray4x4.cpp ../RealTime/Simd/SimdBaseReduceGray5x5.cpp ../RealTime/Simd/SimdBaseReorder.cpp ../RealTime/Simd/SimdBaseResizeBilinear.cpp ../RealTime/Simd/SimdBaseSegmentation.cpp ../RealTime/Simd/SimdBaseShiftBilinear.cpp ../RealTime/Simd/SimdBaseSobel.cpp ../RealTime/Simd/SimdBaseSquaredDifferenceSum.cpp ../RealTime/Simd/SimdBaseStatistic.cpp ../RealTime/Simd/SimdBaseStretchGray2x2.cpp ../RealTime/Simd/SimdBaseSvm.cpp ../RealTime/Simd/SimdBaseTexture.cpp ../RealTime/Simd/SimdBaseYuvToBgr.cpp ../RealTime/Simd/SimdBaseYuvToBgra.cpp ../RealTime/Simd/SimdBaseYuvToHsl.cpp ../RealTime/Simd/SimdBaseYuvToHsv.cpp ../RealTime/Simd/SimdBaseYuvToHue.cpp ../RealTime/Simd/SimdLib.cpp ../RealTime/Simd/SimdSse1SquaredDifferenceSum.cpp ../RealTime/Simd/SimdSse1Svm.cpp ../RealTime/Simd/SimdSse2AbsDifferenceSum.cpp ../RealTime/Simd/SimdSse2AbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdSse2AddFeatureDifference.cpp ../RealTime/Simd/SimdSse2AlphaBlending.cpp ../RealTime/Simd/SimdSse2Background.cpp ../RealTime/Simd/SimdSse2BgraToGray.cpp ../RealTime/Simd/SimdSse2BgraToYuv.cpp ../RealTime/Simd/SimdSse2BgrToBgra.cpp ../RealTime/Simd/SimdSse2BgrToGray.cpp ../RealTime/Simd/SimdSse2Binarization.cpp ../RealTime/Simd/SimdSse2Conditional.cpp ../RealTime/Simd/SimdSse2DeinterleaveUv.cpp ../RealTime/Simd/SimdSse2EdgeBackground.cpp ../RealTime/Simd/SimdSse2Fill.cpp ../RealTime/Simd/SimdSse2GaussianBlur3x3.cpp ../RealTime/Simd/SimdSse2GrayToBgra.cpp ../RealTime/Simd/SimdSse2Histogram.cpp ../RealTime/Simd/SimdSse2Hog.cpp ../RealTime/Simd/SimdSse2Interference.cpp ../RealTime/Simd/SimdSse2InterleaveUv.cpp ../RealTime/Simd/SimdSse2Laplace.cpp ../RealTime/Simd/SimdSse2Lbp.cpp ../RealTime/Simd/SimdSse2MedianFilter.cpp ../RealTime/Simd/SimdSse2Operation.cpp ../RealTime/Simd/SimdSse2ReduceGray2x2.cpp ../RealTime/Simd/SimdSse2ReduceGray3x3.cpp ../RealTime/Simd/SimdSse2ReduceGray4x4.cpp ../RealTime/Simd/SimdSse2ReduceGray5x5.cpp ../RealTime/Simd/SimdSse2Reorder.cpp ../RealTime/Simd/SimdSse2ResizeBilinear.cpp ../RealTime/Simd/SimdSse2Segmentation.cpp ../RealTime/Simd/SimdSse2ShiftBilinear.cpp ../RealTime/Simd/SimdSse2Sobel.cpp ../RealTime/Simd/SimdSse2SquaredDifferenceSum.cpp ../RealTime/Simd/SimdSse2Statistic.cpp ../RealTime/Simd/SimdSse2StretchGray2x2.cpp ../RealTime/Simd/SimdSse2Texture.cpp ../RealTime/Simd/SimdSse2YuvToBgra.cpp ../RealTime/Simd/SimdSse2YuvToHue.cpp ../RealTime/Simd/SimdSse41Segmentation.cpp ../RealTime/Simd/SimdSse42Crc32.cpp ../RealTime/Simd/SimdSsse3AlphaBlending.cpp ../RealTime/Simd/SimdSsse3BgraToBayer.cpp ../RealTime/Simd/SimdSsse3BgraToBgr.cpp ../RealTime/Simd/SimdSsse3BgraToYuv.cpp ../RealTime/Simd/SimdSsse3BgrToBayer.cpp ../RealTime/Simd/SimdSsse3BgrToBgra.cpp ../RealTime/Simd/SimdSsse3BgrToGray.cpp ../RealTime/Simd/SimdSsse3BgrToYuv.cpp ../RealTime/Simd/SimdSsse3GaussianBlur3x3.cpp ../RealTime/Simd/SimdSsse3GrayToBgr.cpp ../RealTime/Simd/SimdSsse3Laplace.cpp ../RealTime/Simd/SimdSsse3ReduceGray2x2.cpp ../RealTime/Simd/SimdSsse3ReduceGray4x4.cpp ../RealTime/Simd/SimdSsse3Reorder.cpp ../RealTime/Simd/SimdSsse3ResizeBilinear.cpp ../RealTime/Simd/SimdSsse3Sobel.cpp ../RealTime/Simd/SimdSsse3SquaredDifferenceSum.cpp ../RealTime/Simd/SimdSsse3Texture.cpp ../RealTime/Simd/SimdSsse3YuvToBgr.cpp ../RealTime/Simd/SimdVmxAbsDifferenceSum.cpp ../RealTime/Simd/SimdVmxAbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdVmxAddFeatureDifference.cpp ../RealTime/Simd/SimdVmxAlphaBlending.cpp ../RealTime/Simd/SimdVmxBackground.cpp ../RealTime/Simd/SimdVmxBgraToBayer.cpp ../RealTime/Simd/SimdVmxBgraToBgr.cpp ../RealTime/Simd/SimdVmxBgraToGray.cpp ../RealTime/Simd/SimdVmxBgraToYuv.cpp ../RealTime/Simd/SimdVmxBgrToBayer.cpp ../RealTime/Simd/SimdVmxBgrToBgra.cpp ../RealTime/Simd/SimdVmxBgrToGray.cpp ../RealTime/Simd/SimdVmxBgrToYuv.cpp ../RealTime/Simd/SimdVmxBinarization.cpp ../RealTime/Simd/SimdVmxConditional.cpp ../RealTime/Simd/SimdVmxDeinterleaveUv.cpp ../RealTime/Simd/SimdVmxEdgeBackground.cpp ../RealTime/Simd/SimdVmxFill.cpp ../RealTime/Simd/SimdVmxGaussianBlur3x3.cpp ../RealTime/Simd/SimdVmxGrayToBgr.cpp ../RealTime/Simd/SimdVmxGrayToBgra.cpp ../RealTime/Simd/SimdVmxHistogram.cpp ../RealTime/Simd/SimdVmxInterference.cpp ../RealTime/Simd/SimdVmxInterleaveUv.cpp ../RealTime/Simd/SimdVmxLaplace.cpp ../RealTime/Simd/SimdVmxLbp.cpp ../RealTime/Simd/SimdVmxMedianFilter.cpp ../RealTime/Simd/SimdVmxOperation.cpp ../RealTime/Simd/SimdVmxReduceGray2x2.cpp ../RealTime/Simd/SimdVmxReduceGray3x3.cpp ../RealTime/Simd/SimdVmxReduceGray4x4.cpp ../RealTime/Simd/SimdVmxReduceGray5x5.cpp ../RealTime/Simd/SimdVmxReorder.cpp ../RealTime/Simd/SimdVmxResizeBilinear.cpp ../RealTime/Simd/SimdVmxSegmentation.cpp ../RealTime/Simd/SimdVmxShiftBilinear.cpp ../RealTime/Simd/SimdVmxSobel.cpp ../RealTime/Simd/SimdVmxSquaredDifferenceSum.cpp ../RealTime/Simd/SimdVmxStatistic.cpp ../RealTime/Simd/SimdVmxStretchGray2x2.cpp ../RealTime/Simd/SimdVmxTexture.cpp ../RealTime/Simd/SimdVmxYuvToBgr.cpp ../RealTime/Simd/SimdVmxYuvToBgra.cpp ../RealTime/Simd/SimdVsxHog.cpp ../RealTime/Simd/SimdVsxSquaredDifferenceSum.cpp ../RealTime/Simd/SimdVsxSvm.cpp ../RealTime/Simd/SimdVsxYuvToHue.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../RealTime/mainwindow.ui $(DISTDIR)/
 
 
@@ -351,7 +1016,7 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: ../RealTime/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/tmp/guest-2attj1/ProcessingMat/QTProject/RealTime -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../RealTime/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/tmp/guest-hgb05r/ProcessingMat/QTProject/RealTime -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../RealTime/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -378,6 +1043,2403 @@ main.o: ../RealTime/main.cpp ../RealTime/mainwindow.h
 mainwindow.o: ../RealTime/mainwindow.cpp ../RealTime/mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../RealTime/mainwindow.cpp
+
+SimdAvx1SquaredDifferenceSum.o: ../RealTime/Simd/SimdAvx1SquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx1SquaredDifferenceSum.o ../RealTime/Simd/SimdAvx1SquaredDifferenceSum.cpp
+
+SimdAvx1Svm.o: ../RealTime/Simd/SimdAvx1Svm.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx1Svm.o ../RealTime/Simd/SimdAvx1Svm.cpp
+
+SimdAvx2AbsDifferenceSum.o: ../RealTime/Simd/SimdAvx2AbsDifferenceSum.cpp ../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2AbsDifferenceSum.o ../RealTime/Simd/SimdAvx2AbsDifferenceSum.cpp
+
+SimdAvx2AbsGradientSaturatedSum.o: ../RealTime/Simd/SimdAvx2AbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2AbsGradientSaturatedSum.o ../RealTime/Simd/SimdAvx2AbsGradientSaturatedSum.cpp
+
+SimdAvx2AddFeatureDifference.o: ../RealTime/Simd/SimdAvx2AddFeatureDifference.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2AddFeatureDifference.o ../RealTime/Simd/SimdAvx2AddFeatureDifference.cpp
+
+SimdAvx2AlphaBlending.o: ../RealTime/Simd/SimdAvx2AlphaBlending.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2AlphaBlending.o ../RealTime/Simd/SimdAvx2AlphaBlending.cpp
+
+SimdAvx2Background.o: ../RealTime/Simd/SimdAvx2Background.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Background.o ../RealTime/Simd/SimdAvx2Background.cpp
+
+SimdAvx2BgraToGray.o: ../RealTime/Simd/SimdAvx2BgraToGray.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2BgraToGray.o ../RealTime/Simd/SimdAvx2BgraToGray.cpp
+
+SimdAvx2BgraToYuv.o: ../RealTime/Simd/SimdAvx2BgraToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2BgraToYuv.o ../RealTime/Simd/SimdAvx2BgraToYuv.cpp
+
+SimdAvx2BgrToBgra.o: ../RealTime/Simd/SimdAvx2BgrToBgra.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2BgrToBgra.o ../RealTime/Simd/SimdAvx2BgrToBgra.cpp
+
+SimdAvx2BgrToGray.o: ../RealTime/Simd/SimdAvx2BgrToGray.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2BgrToGray.o ../RealTime/Simd/SimdAvx2BgrToGray.cpp
+
+SimdAvx2BgrToYuv.o: ../RealTime/Simd/SimdAvx2BgrToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2BgrToYuv.o ../RealTime/Simd/SimdAvx2BgrToYuv.cpp
+
+SimdAvx2Binarization.o: ../RealTime/Simd/SimdAvx2Binarization.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Binarization.o ../RealTime/Simd/SimdAvx2Binarization.cpp
+
+SimdAvx2Conditional.o: ../RealTime/Simd/SimdAvx2Conditional.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Conditional.o ../RealTime/Simd/SimdAvx2Conditional.cpp
+
+SimdAvx2DeinterleaveUv.o: ../RealTime/Simd/SimdAvx2DeinterleaveUv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2DeinterleaveUv.o ../RealTime/Simd/SimdAvx2DeinterleaveUv.cpp
+
+SimdAvx2EdgeBackground.o: ../RealTime/Simd/SimdAvx2EdgeBackground.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2EdgeBackground.o ../RealTime/Simd/SimdAvx2EdgeBackground.cpp
+
+SimdAvx2Fill.o: ../RealTime/Simd/SimdAvx2Fill.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Fill.o ../RealTime/Simd/SimdAvx2Fill.cpp
+
+SimdAvx2GaussianBlur3x3.o: ../RealTime/Simd/SimdAvx2GaussianBlur3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2GaussianBlur3x3.o ../RealTime/Simd/SimdAvx2GaussianBlur3x3.cpp
+
+SimdAvx2GrayToBgr.o: ../RealTime/Simd/SimdAvx2GrayToBgr.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2GrayToBgr.o ../RealTime/Simd/SimdAvx2GrayToBgr.cpp
+
+SimdAvx2GrayToBgra.o: ../RealTime/Simd/SimdAvx2GrayToBgra.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2GrayToBgra.o ../RealTime/Simd/SimdAvx2GrayToBgra.cpp
+
+SimdAvx2Histogram.o: ../RealTime/Simd/SimdAvx2Histogram.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Histogram.o ../RealTime/Simd/SimdAvx2Histogram.cpp
+
+SimdAvx2Hog.o: ../RealTime/Simd/SimdAvx2Hog.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Hog.o ../RealTime/Simd/SimdAvx2Hog.cpp
+
+SimdAvx2Interference.o: ../RealTime/Simd/SimdAvx2Interference.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Interference.o ../RealTime/Simd/SimdAvx2Interference.cpp
+
+SimdAvx2InterleaveUv.o: ../RealTime/Simd/SimdAvx2InterleaveUv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2InterleaveUv.o ../RealTime/Simd/SimdAvx2InterleaveUv.cpp
+
+SimdAvx2Laplace.o: ../RealTime/Simd/SimdAvx2Laplace.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Laplace.o ../RealTime/Simd/SimdAvx2Laplace.cpp
+
+SimdAvx2Lbp.o: ../RealTime/Simd/SimdAvx2Lbp.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Lbp.o ../RealTime/Simd/SimdAvx2Lbp.cpp
+
+SimdAvx2MedianFilter.o: ../RealTime/Simd/SimdAvx2MedianFilter.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2MedianFilter.o ../RealTime/Simd/SimdAvx2MedianFilter.cpp
+
+SimdAvx2Operation.o: ../RealTime/Simd/SimdAvx2Operation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Operation.o ../RealTime/Simd/SimdAvx2Operation.cpp
+
+SimdAvx2ReduceGray2x2.o: ../RealTime/Simd/SimdAvx2ReduceGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2ReduceGray2x2.o ../RealTime/Simd/SimdAvx2ReduceGray2x2.cpp
+
+SimdAvx2ReduceGray3x3.o: ../RealTime/Simd/SimdAvx2ReduceGray3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2ReduceGray3x3.o ../RealTime/Simd/SimdAvx2ReduceGray3x3.cpp
+
+SimdAvx2ReduceGray4x4.o: ../RealTime/Simd/SimdAvx2ReduceGray4x4.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2ReduceGray4x4.o ../RealTime/Simd/SimdAvx2ReduceGray4x4.cpp
+
+SimdAvx2ReduceGray5x5.o: ../RealTime/Simd/SimdAvx2ReduceGray5x5.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2ReduceGray5x5.o ../RealTime/Simd/SimdAvx2ReduceGray5x5.cpp
+
+SimdAvx2Reorder.o: ../RealTime/Simd/SimdAvx2Reorder.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Reorder.o ../RealTime/Simd/SimdAvx2Reorder.cpp
+
+SimdAvx2ResizeBilinear.o: ../RealTime/Simd/SimdAvx2ResizeBilinear.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2ResizeBilinear.o ../RealTime/Simd/SimdAvx2ResizeBilinear.cpp
+
+SimdAvx2Segmentation.o: ../RealTime/Simd/SimdAvx2Segmentation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Segmentation.o ../RealTime/Simd/SimdAvx2Segmentation.cpp
+
+SimdAvx2ShiftBilinear.o: ../RealTime/Simd/SimdAvx2ShiftBilinear.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2ShiftBilinear.o ../RealTime/Simd/SimdAvx2ShiftBilinear.cpp
+
+SimdAvx2Sobel.o: ../RealTime/Simd/SimdAvx2Sobel.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Sobel.o ../RealTime/Simd/SimdAvx2Sobel.cpp
+
+SimdAvx2SquaredDifferenceSum.o: ../RealTime/Simd/SimdAvx2SquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2SquaredDifferenceSum.o ../RealTime/Simd/SimdAvx2SquaredDifferenceSum.cpp
+
+SimdAvx2Statistic.o: ../RealTime/Simd/SimdAvx2Statistic.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Statistic.o ../RealTime/Simd/SimdAvx2Statistic.cpp
+
+SimdAvx2StretchGray2x2.o: ../RealTime/Simd/SimdAvx2StretchGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2StretchGray2x2.o ../RealTime/Simd/SimdAvx2StretchGray2x2.cpp
+
+SimdAvx2Texture.o: ../RealTime/Simd/SimdAvx2Texture.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2Texture.o ../RealTime/Simd/SimdAvx2Texture.cpp
+
+SimdAvx2YuvToBgr.o: ../RealTime/Simd/SimdAvx2YuvToBgr.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2YuvToBgr.o ../RealTime/Simd/SimdAvx2YuvToBgr.cpp
+
+SimdAvx2YuvToBgra.o: ../RealTime/Simd/SimdAvx2YuvToBgra.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2YuvToBgra.o ../RealTime/Simd/SimdAvx2YuvToBgra.cpp
+
+SimdAvx2YuvToHue.o: ../RealTime/Simd/SimdAvx2YuvToHue.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdAvx2YuvToHue.o ../RealTime/Simd/SimdAvx2YuvToHue.cpp
+
+SimdBaseAbsDifferenceSum.o: ../RealTime/Simd/SimdBaseAbsDifferenceSum.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseAbsDifferenceSum.o ../RealTime/Simd/SimdBaseAbsDifferenceSum.cpp
+
+SimdBaseAbsGradientSaturatedSum.o: ../RealTime/Simd/SimdBaseAbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseAbsGradientSaturatedSum.o ../RealTime/Simd/SimdBaseAbsGradientSaturatedSum.cpp
+
+SimdBaseAddFeatureDifference.o: ../RealTime/Simd/SimdBaseAddFeatureDifference.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseAddFeatureDifference.o ../RealTime/Simd/SimdBaseAddFeatureDifference.cpp
+
+SimdBaseAlphaBlending.o: ../RealTime/Simd/SimdBaseAlphaBlending.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseAlphaBlending.o ../RealTime/Simd/SimdBaseAlphaBlending.cpp
+
+SimdBaseBackground.o: ../RealTime/Simd/SimdBaseBackground.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBackground.o ../RealTime/Simd/SimdBaseBackground.cpp
+
+SimdBaseBayerToBgr.o: ../RealTime/Simd/SimdBaseBayerToBgr.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBayerToBgr.o ../RealTime/Simd/SimdBaseBayerToBgr.cpp
+
+SimdBaseBayerToBgra.o: ../RealTime/Simd/SimdBaseBayerToBgra.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBayerToBgra.o ../RealTime/Simd/SimdBaseBayerToBgra.cpp
+
+SimdBaseBgraToBayer.o: ../RealTime/Simd/SimdBaseBgraToBayer.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgraToBayer.o ../RealTime/Simd/SimdBaseBgraToBayer.cpp
+
+SimdBaseBgraToBgr.o: ../RealTime/Simd/SimdBaseBgraToBgr.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgraToBgr.o ../RealTime/Simd/SimdBaseBgraToBgr.cpp
+
+SimdBaseBgraToGray.o: ../RealTime/Simd/SimdBaseBgraToGray.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgraToGray.o ../RealTime/Simd/SimdBaseBgraToGray.cpp
+
+SimdBaseBgraToYuv.o: ../RealTime/Simd/SimdBaseBgraToYuv.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgraToYuv.o ../RealTime/Simd/SimdBaseBgraToYuv.cpp
+
+SimdBaseBgrToBayer.o: ../RealTime/Simd/SimdBaseBgrToBayer.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgrToBayer.o ../RealTime/Simd/SimdBaseBgrToBayer.cpp
+
+SimdBaseBgrToBgra.o: ../RealTime/Simd/SimdBaseBgrToBgra.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgrToBgra.o ../RealTime/Simd/SimdBaseBgrToBgra.cpp
+
+SimdBaseBgrToGray.o: ../RealTime/Simd/SimdBaseBgrToGray.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgrToGray.o ../RealTime/Simd/SimdBaseBgrToGray.cpp
+
+SimdBaseBgrToHsl.o: ../RealTime/Simd/SimdBaseBgrToHsl.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgrToHsl.o ../RealTime/Simd/SimdBaseBgrToHsl.cpp
+
+SimdBaseBgrToHsv.o: ../RealTime/Simd/SimdBaseBgrToHsv.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgrToHsv.o ../RealTime/Simd/SimdBaseBgrToHsv.cpp
+
+SimdBaseBgrToYuv.o: ../RealTime/Simd/SimdBaseBgrToYuv.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBgrToYuv.o ../RealTime/Simd/SimdBaseBgrToYuv.cpp
+
+SimdBaseBinarization.o: ../RealTime/Simd/SimdBaseBinarization.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseBinarization.o ../RealTime/Simd/SimdBaseBinarization.cpp
+
+SimdBaseConditional.o: ../RealTime/Simd/SimdBaseConditional.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseConditional.o ../RealTime/Simd/SimdBaseConditional.cpp
+
+SimdBaseCopy.o: ../RealTime/Simd/SimdBaseCopy.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseCopy.o ../RealTime/Simd/SimdBaseCopy.cpp
+
+SimdBaseCrc32.o: ../RealTime/Simd/SimdBaseCrc32.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseCrc32.o ../RealTime/Simd/SimdBaseCrc32.cpp
+
+SimdBaseDeinterleaveUv.o: ../RealTime/Simd/SimdBaseDeinterleaveUv.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseDeinterleaveUv.o ../RealTime/Simd/SimdBaseDeinterleaveUv.cpp
+
+SimdBaseEdgeBackground.o: ../RealTime/Simd/SimdBaseEdgeBackground.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseEdgeBackground.o ../RealTime/Simd/SimdBaseEdgeBackground.cpp
+
+SimdBaseFill.o: ../RealTime/Simd/SimdBaseFill.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseFill.o ../RealTime/Simd/SimdBaseFill.cpp
+
+SimdBaseGaussianBlur3x3.o: ../RealTime/Simd/SimdBaseGaussianBlur3x3.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseGaussianBlur3x3.o ../RealTime/Simd/SimdBaseGaussianBlur3x3.cpp
+
+SimdBaseGrayToBgr.o: ../RealTime/Simd/SimdBaseGrayToBgr.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseGrayToBgr.o ../RealTime/Simd/SimdBaseGrayToBgr.cpp
+
+SimdBaseGrayToBgra.o: ../RealTime/Simd/SimdBaseGrayToBgra.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseGrayToBgra.o ../RealTime/Simd/SimdBaseGrayToBgra.cpp
+
+SimdBaseHistogram.o: ../RealTime/Simd/SimdBaseHistogram.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseHistogram.o ../RealTime/Simd/SimdBaseHistogram.cpp
+
+SimdBaseHog.o: ../RealTime/Simd/SimdBaseHog.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseHog.o ../RealTime/Simd/SimdBaseHog.cpp
+
+SimdBaseIntegral.o: ../RealTime/Simd/SimdBaseIntegral.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseIntegral.o ../RealTime/Simd/SimdBaseIntegral.cpp
+
+SimdBaseInterference.o: ../RealTime/Simd/SimdBaseInterference.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseInterference.o ../RealTime/Simd/SimdBaseInterference.cpp
+
+SimdBaseInterleaveUv.o: ../RealTime/Simd/SimdBaseInterleaveUv.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseInterleaveUv.o ../RealTime/Simd/SimdBaseInterleaveUv.cpp
+
+SimdBaseLaplace.o: ../RealTime/Simd/SimdBaseLaplace.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseLaplace.o ../RealTime/Simd/SimdBaseLaplace.cpp
+
+SimdBaseLbp.o: ../RealTime/Simd/SimdBaseLbp.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseLbp.o ../RealTime/Simd/SimdBaseLbp.cpp
+
+SimdBaseMedianFilter.o: ../RealTime/Simd/SimdBaseMedianFilter.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseMedianFilter.o ../RealTime/Simd/SimdBaseMedianFilter.cpp
+
+SimdBaseOperation.o: ../RealTime/Simd/SimdBaseOperation.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseOperation.o ../RealTime/Simd/SimdBaseOperation.cpp
+
+SimdBaseReduceGray2x2.o: ../RealTime/Simd/SimdBaseReduceGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseReduceGray2x2.o ../RealTime/Simd/SimdBaseReduceGray2x2.cpp
+
+SimdBaseReduceGray3x3.o: ../RealTime/Simd/SimdBaseReduceGray3x3.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseReduceGray3x3.o ../RealTime/Simd/SimdBaseReduceGray3x3.cpp
+
+SimdBaseReduceGray4x4.o: ../RealTime/Simd/SimdBaseReduceGray4x4.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseReduceGray4x4.o ../RealTime/Simd/SimdBaseReduceGray4x4.cpp
+
+SimdBaseReduceGray5x5.o: ../RealTime/Simd/SimdBaseReduceGray5x5.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseReduceGray5x5.o ../RealTime/Simd/SimdBaseReduceGray5x5.cpp
+
+SimdBaseReorder.o: ../RealTime/Simd/SimdBaseReorder.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseReorder.o ../RealTime/Simd/SimdBaseReorder.cpp
+
+SimdBaseResizeBilinear.o: ../RealTime/Simd/SimdBaseResizeBilinear.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseResizeBilinear.o ../RealTime/Simd/SimdBaseResizeBilinear.cpp
+
+SimdBaseSegmentation.o: ../RealTime/Simd/SimdBaseSegmentation.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseSegmentation.o ../RealTime/Simd/SimdBaseSegmentation.cpp
+
+SimdBaseShiftBilinear.o: ../RealTime/Simd/SimdBaseShiftBilinear.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseShiftBilinear.o ../RealTime/Simd/SimdBaseShiftBilinear.cpp
+
+SimdBaseSobel.o: ../RealTime/Simd/SimdBaseSobel.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseSobel.o ../RealTime/Simd/SimdBaseSobel.cpp
+
+SimdBaseSquaredDifferenceSum.o: ../RealTime/Simd/SimdBaseSquaredDifferenceSum.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseSquaredDifferenceSum.o ../RealTime/Simd/SimdBaseSquaredDifferenceSum.cpp
+
+SimdBaseStatistic.o: ../RealTime/Simd/SimdBaseStatistic.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseStatistic.o ../RealTime/Simd/SimdBaseStatistic.cpp
+
+SimdBaseStretchGray2x2.o: ../RealTime/Simd/SimdBaseStretchGray2x2.cpp ../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseStretchGray2x2.o ../RealTime/Simd/SimdBaseStretchGray2x2.cpp
+
+SimdBaseSvm.o: ../RealTime/Simd/SimdBaseSvm.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseSvm.o ../RealTime/Simd/SimdBaseSvm.cpp
+
+SimdBaseTexture.o: ../RealTime/Simd/SimdBaseTexture.cpp ../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseTexture.o ../RealTime/Simd/SimdBaseTexture.cpp
+
+SimdBaseYuvToBgr.o: ../RealTime/Simd/SimdBaseYuvToBgr.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseYuvToBgr.o ../RealTime/Simd/SimdBaseYuvToBgr.cpp
+
+SimdBaseYuvToBgra.o: ../RealTime/Simd/SimdBaseYuvToBgra.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseYuvToBgra.o ../RealTime/Simd/SimdBaseYuvToBgra.cpp
+
+SimdBaseYuvToHsl.o: ../RealTime/Simd/SimdBaseYuvToHsl.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseYuvToHsl.o ../RealTime/Simd/SimdBaseYuvToHsl.cpp
+
+SimdBaseYuvToHsv.o: ../RealTime/Simd/SimdBaseYuvToHsv.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseYuvToHsv.o ../RealTime/Simd/SimdBaseYuvToHsv.cpp
+
+SimdBaseYuvToHue.o: ../RealTime/Simd/SimdBaseYuvToHue.cpp ../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdBaseYuvToHue.o ../RealTime/Simd/SimdBaseYuvToHue.cpp
+
+SimdLib.o: ../RealTime/Simd/SimdLib.cpp ../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdEnable.h \
+		../RealTime/Simd/SimdVersion.h \
+		../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdSse1.h \
+		../RealTime/Simd/SimdSse2.h \
+		../RealTime/Simd/SimdSsse3.h \
+		../RealTime/Simd/SimdSse41.h \
+		../RealTime/Simd/SimdSse42.h \
+		../RealTime/Simd/SimdAvx1.h \
+		../RealTime/Simd/SimdAvx2.h \
+		../RealTime/Simd/SimdVmx.h \
+		../RealTime/Simd/SimdVsx.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdLib.o ../RealTime/Simd/SimdLib.cpp
+
+SimdSse1SquaredDifferenceSum.o: ../RealTime/Simd/SimdSse1SquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse1SquaredDifferenceSum.o ../RealTime/Simd/SimdSse1SquaredDifferenceSum.cpp
+
+SimdSse1Svm.o: ../RealTime/Simd/SimdSse1Svm.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse1Svm.o ../RealTime/Simd/SimdSse1Svm.cpp
+
+SimdSse2AbsDifferenceSum.o: ../RealTime/Simd/SimdSse2AbsDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdLoad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2AbsDifferenceSum.o ../RealTime/Simd/SimdSse2AbsDifferenceSum.cpp
+
+SimdSse2AbsGradientSaturatedSum.o: ../RealTime/Simd/SimdSse2AbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2AbsGradientSaturatedSum.o ../RealTime/Simd/SimdSse2AbsGradientSaturatedSum.cpp
+
+SimdSse2AddFeatureDifference.o: ../RealTime/Simd/SimdSse2AddFeatureDifference.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2AddFeatureDifference.o ../RealTime/Simd/SimdSse2AddFeatureDifference.cpp
+
+SimdSse2AlphaBlending.o: ../RealTime/Simd/SimdSse2AlphaBlending.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2AlphaBlending.o ../RealTime/Simd/SimdSse2AlphaBlending.cpp
+
+SimdSse2Background.o: ../RealTime/Simd/SimdSse2Background.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Background.o ../RealTime/Simd/SimdSse2Background.cpp
+
+SimdSse2BgraToGray.o: ../RealTime/Simd/SimdSse2BgraToGray.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2BgraToGray.o ../RealTime/Simd/SimdSse2BgraToGray.cpp
+
+SimdSse2BgraToYuv.o: ../RealTime/Simd/SimdSse2BgraToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2BgraToYuv.o ../RealTime/Simd/SimdSse2BgraToYuv.cpp
+
+SimdSse2BgrToBgra.o: ../RealTime/Simd/SimdSse2BgrToBgra.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2BgrToBgra.o ../RealTime/Simd/SimdSse2BgrToBgra.cpp
+
+SimdSse2BgrToGray.o: ../RealTime/Simd/SimdSse2BgrToGray.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdSse2.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2BgrToGray.o ../RealTime/Simd/SimdSse2BgrToGray.cpp
+
+SimdSse2Binarization.o: ../RealTime/Simd/SimdSse2Binarization.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Binarization.o ../RealTime/Simd/SimdSse2Binarization.cpp
+
+SimdSse2Conditional.o: ../RealTime/Simd/SimdSse2Conditional.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Conditional.o ../RealTime/Simd/SimdSse2Conditional.cpp
+
+SimdSse2DeinterleaveUv.o: ../RealTime/Simd/SimdSse2DeinterleaveUv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2DeinterleaveUv.o ../RealTime/Simd/SimdSse2DeinterleaveUv.cpp
+
+SimdSse2EdgeBackground.o: ../RealTime/Simd/SimdSse2EdgeBackground.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2EdgeBackground.o ../RealTime/Simd/SimdSse2EdgeBackground.cpp
+
+SimdSse2Fill.o: ../RealTime/Simd/SimdSse2Fill.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Fill.o ../RealTime/Simd/SimdSse2Fill.cpp
+
+SimdSse2GaussianBlur3x3.o: ../RealTime/Simd/SimdSse2GaussianBlur3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2GaussianBlur3x3.o ../RealTime/Simd/SimdSse2GaussianBlur3x3.cpp
+
+SimdSse2GrayToBgra.o: ../RealTime/Simd/SimdSse2GrayToBgra.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2GrayToBgra.o ../RealTime/Simd/SimdSse2GrayToBgra.cpp
+
+SimdSse2Histogram.o: ../RealTime/Simd/SimdSse2Histogram.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Histogram.o ../RealTime/Simd/SimdSse2Histogram.cpp
+
+SimdSse2Hog.o: ../RealTime/Simd/SimdSse2Hog.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Hog.o ../RealTime/Simd/SimdSse2Hog.cpp
+
+SimdSse2Interference.o: ../RealTime/Simd/SimdSse2Interference.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Interference.o ../RealTime/Simd/SimdSse2Interference.cpp
+
+SimdSse2InterleaveUv.o: ../RealTime/Simd/SimdSse2InterleaveUv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2InterleaveUv.o ../RealTime/Simd/SimdSse2InterleaveUv.cpp
+
+SimdSse2Laplace.o: ../RealTime/Simd/SimdSse2Laplace.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Laplace.o ../RealTime/Simd/SimdSse2Laplace.cpp
+
+SimdSse2Lbp.o: ../RealTime/Simd/SimdSse2Lbp.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Lbp.o ../RealTime/Simd/SimdSse2Lbp.cpp
+
+SimdSse2MedianFilter.o: ../RealTime/Simd/SimdSse2MedianFilter.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2MedianFilter.o ../RealTime/Simd/SimdSse2MedianFilter.cpp
+
+SimdSse2Operation.o: ../RealTime/Simd/SimdSse2Operation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Operation.o ../RealTime/Simd/SimdSse2Operation.cpp
+
+SimdSse2ReduceGray2x2.o: ../RealTime/Simd/SimdSse2ReduceGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2ReduceGray2x2.o ../RealTime/Simd/SimdSse2ReduceGray2x2.cpp
+
+SimdSse2ReduceGray3x3.o: ../RealTime/Simd/SimdSse2ReduceGray3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2ReduceGray3x3.o ../RealTime/Simd/SimdSse2ReduceGray3x3.cpp
+
+SimdSse2ReduceGray4x4.o: ../RealTime/Simd/SimdSse2ReduceGray4x4.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2ReduceGray4x4.o ../RealTime/Simd/SimdSse2ReduceGray4x4.cpp
+
+SimdSse2ReduceGray5x5.o: ../RealTime/Simd/SimdSse2ReduceGray5x5.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2ReduceGray5x5.o ../RealTime/Simd/SimdSse2ReduceGray5x5.cpp
+
+SimdSse2Reorder.o: ../RealTime/Simd/SimdSse2Reorder.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Reorder.o ../RealTime/Simd/SimdSse2Reorder.cpp
+
+SimdSse2ResizeBilinear.o: ../RealTime/Simd/SimdSse2ResizeBilinear.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2ResizeBilinear.o ../RealTime/Simd/SimdSse2ResizeBilinear.cpp
+
+SimdSse2Segmentation.o: ../RealTime/Simd/SimdSse2Segmentation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Segmentation.o ../RealTime/Simd/SimdSse2Segmentation.cpp
+
+SimdSse2ShiftBilinear.o: ../RealTime/Simd/SimdSse2ShiftBilinear.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2ShiftBilinear.o ../RealTime/Simd/SimdSse2ShiftBilinear.cpp
+
+SimdSse2Sobel.o: ../RealTime/Simd/SimdSse2Sobel.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Sobel.o ../RealTime/Simd/SimdSse2Sobel.cpp
+
+SimdSse2SquaredDifferenceSum.o: ../RealTime/Simd/SimdSse2SquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2SquaredDifferenceSum.o ../RealTime/Simd/SimdSse2SquaredDifferenceSum.cpp
+
+SimdSse2Statistic.o: ../RealTime/Simd/SimdSse2Statistic.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Statistic.o ../RealTime/Simd/SimdSse2Statistic.cpp
+
+SimdSse2StretchGray2x2.o: ../RealTime/Simd/SimdSse2StretchGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2StretchGray2x2.o ../RealTime/Simd/SimdSse2StretchGray2x2.cpp
+
+SimdSse2Texture.o: ../RealTime/Simd/SimdSse2Texture.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2Texture.o ../RealTime/Simd/SimdSse2Texture.cpp
+
+SimdSse2YuvToBgra.o: ../RealTime/Simd/SimdSse2YuvToBgra.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2YuvToBgra.o ../RealTime/Simd/SimdSse2YuvToBgra.cpp
+
+SimdSse2YuvToHue.o: ../RealTime/Simd/SimdSse2YuvToHue.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse2YuvToHue.o ../RealTime/Simd/SimdSse2YuvToHue.cpp
+
+SimdSse41Segmentation.o: ../RealTime/Simd/SimdSse41Segmentation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse41Segmentation.o ../RealTime/Simd/SimdSse41Segmentation.cpp
+
+SimdSse42Crc32.o: ../RealTime/Simd/SimdSse42Crc32.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSse42Crc32.o ../RealTime/Simd/SimdSse42Crc32.cpp
+
+SimdSsse3AlphaBlending.o: ../RealTime/Simd/SimdSsse3AlphaBlending.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3AlphaBlending.o ../RealTime/Simd/SimdSsse3AlphaBlending.cpp
+
+SimdSsse3BgraToBayer.o: ../RealTime/Simd/SimdSsse3BgraToBayer.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgraToBayer.o ../RealTime/Simd/SimdSsse3BgraToBayer.cpp
+
+SimdSsse3BgraToBgr.o: ../RealTime/Simd/SimdSsse3BgraToBgr.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgraToBgr.o ../RealTime/Simd/SimdSsse3BgraToBgr.cpp
+
+SimdSsse3BgraToYuv.o: ../RealTime/Simd/SimdSsse3BgraToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgraToYuv.o ../RealTime/Simd/SimdSsse3BgraToYuv.cpp
+
+SimdSsse3BgrToBayer.o: ../RealTime/Simd/SimdSsse3BgrToBayer.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgrToBayer.o ../RealTime/Simd/SimdSsse3BgrToBayer.cpp
+
+SimdSsse3BgrToBgra.o: ../RealTime/Simd/SimdSsse3BgrToBgra.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgrToBgra.o ../RealTime/Simd/SimdSsse3BgrToBgra.cpp
+
+SimdSsse3BgrToGray.o: ../RealTime/Simd/SimdSsse3BgrToGray.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgrToGray.o ../RealTime/Simd/SimdSsse3BgrToGray.cpp
+
+SimdSsse3BgrToYuv.o: ../RealTime/Simd/SimdSsse3BgrToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3BgrToYuv.o ../RealTime/Simd/SimdSsse3BgrToYuv.cpp
+
+SimdSsse3GaussianBlur3x3.o: ../RealTime/Simd/SimdSsse3GaussianBlur3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3GaussianBlur3x3.o ../RealTime/Simd/SimdSsse3GaussianBlur3x3.cpp
+
+SimdSsse3GrayToBgr.o: ../RealTime/Simd/SimdSsse3GrayToBgr.cpp ../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdMemory.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3GrayToBgr.o ../RealTime/Simd/SimdSsse3GrayToBgr.cpp
+
+SimdSsse3Laplace.o: ../RealTime/Simd/SimdSsse3Laplace.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3Laplace.o ../RealTime/Simd/SimdSsse3Laplace.cpp
+
+SimdSsse3ReduceGray2x2.o: ../RealTime/Simd/SimdSsse3ReduceGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3ReduceGray2x2.o ../RealTime/Simd/SimdSsse3ReduceGray2x2.cpp
+
+SimdSsse3ReduceGray4x4.o: ../RealTime/Simd/SimdSsse3ReduceGray4x4.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3ReduceGray4x4.o ../RealTime/Simd/SimdSsse3ReduceGray4x4.cpp
+
+SimdSsse3Reorder.o: ../RealTime/Simd/SimdSsse3Reorder.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3Reorder.o ../RealTime/Simd/SimdSsse3Reorder.cpp
+
+SimdSsse3ResizeBilinear.o: ../RealTime/Simd/SimdSsse3ResizeBilinear.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3ResizeBilinear.o ../RealTime/Simd/SimdSsse3ResizeBilinear.cpp
+
+SimdSsse3Sobel.o: ../RealTime/Simd/SimdSsse3Sobel.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3Sobel.o ../RealTime/Simd/SimdSsse3Sobel.cpp
+
+SimdSsse3SquaredDifferenceSum.o: ../RealTime/Simd/SimdSsse3SquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3SquaredDifferenceSum.o ../RealTime/Simd/SimdSsse3SquaredDifferenceSum.cpp
+
+SimdSsse3Texture.o: ../RealTime/Simd/SimdSsse3Texture.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3Texture.o ../RealTime/Simd/SimdSsse3Texture.cpp
+
+SimdSsse3YuvToBgr.o: ../RealTime/Simd/SimdSsse3YuvToBgr.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdSsse3YuvToBgr.o ../RealTime/Simd/SimdSsse3YuvToBgr.cpp
+
+SimdVmxAbsDifferenceSum.o: ../RealTime/Simd/SimdVmxAbsDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxAbsDifferenceSum.o ../RealTime/Simd/SimdVmxAbsDifferenceSum.cpp
+
+SimdVmxAbsGradientSaturatedSum.o: ../RealTime/Simd/SimdVmxAbsGradientSaturatedSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxAbsGradientSaturatedSum.o ../RealTime/Simd/SimdVmxAbsGradientSaturatedSum.cpp
+
+SimdVmxAddFeatureDifference.o: ../RealTime/Simd/SimdVmxAddFeatureDifference.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxAddFeatureDifference.o ../RealTime/Simd/SimdVmxAddFeatureDifference.cpp
+
+SimdVmxAlphaBlending.o: ../RealTime/Simd/SimdVmxAlphaBlending.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxAlphaBlending.o ../RealTime/Simd/SimdVmxAlphaBlending.cpp
+
+SimdVmxBackground.o: ../RealTime/Simd/SimdVmxBackground.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBackground.o ../RealTime/Simd/SimdVmxBackground.cpp
+
+SimdVmxBgraToBayer.o: ../RealTime/Simd/SimdVmxBgraToBayer.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgraToBayer.o ../RealTime/Simd/SimdVmxBgraToBayer.cpp
+
+SimdVmxBgraToBgr.o: ../RealTime/Simd/SimdVmxBgraToBgr.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgraToBgr.o ../RealTime/Simd/SimdVmxBgraToBgr.cpp
+
+SimdVmxBgraToGray.o: ../RealTime/Simd/SimdVmxBgraToGray.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgraToGray.o ../RealTime/Simd/SimdVmxBgraToGray.cpp
+
+SimdVmxBgraToYuv.o: ../RealTime/Simd/SimdVmxBgraToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgraToYuv.o ../RealTime/Simd/SimdVmxBgraToYuv.cpp
+
+SimdVmxBgrToBayer.o: ../RealTime/Simd/SimdVmxBgrToBayer.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgrToBayer.o ../RealTime/Simd/SimdVmxBgrToBayer.cpp
+
+SimdVmxBgrToBgra.o: ../RealTime/Simd/SimdVmxBgrToBgra.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgrToBgra.o ../RealTime/Simd/SimdVmxBgrToBgra.cpp
+
+SimdVmxBgrToGray.o: ../RealTime/Simd/SimdVmxBgrToGray.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgrToGray.o ../RealTime/Simd/SimdVmxBgrToGray.cpp
+
+SimdVmxBgrToYuv.o: ../RealTime/Simd/SimdVmxBgrToYuv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBgrToYuv.o ../RealTime/Simd/SimdVmxBgrToYuv.cpp
+
+SimdVmxBinarization.o: ../RealTime/Simd/SimdVmxBinarization.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxBinarization.o ../RealTime/Simd/SimdVmxBinarization.cpp
+
+SimdVmxConditional.o: ../RealTime/Simd/SimdVmxConditional.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxConditional.o ../RealTime/Simd/SimdVmxConditional.cpp
+
+SimdVmxDeinterleaveUv.o: ../RealTime/Simd/SimdVmxDeinterleaveUv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxDeinterleaveUv.o ../RealTime/Simd/SimdVmxDeinterleaveUv.cpp
+
+SimdVmxEdgeBackground.o: ../RealTime/Simd/SimdVmxEdgeBackground.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxEdgeBackground.o ../RealTime/Simd/SimdVmxEdgeBackground.cpp
+
+SimdVmxFill.o: ../RealTime/Simd/SimdVmxFill.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxFill.o ../RealTime/Simd/SimdVmxFill.cpp
+
+SimdVmxGaussianBlur3x3.o: ../RealTime/Simd/SimdVmxGaussianBlur3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxGaussianBlur3x3.o ../RealTime/Simd/SimdVmxGaussianBlur3x3.cpp
+
+SimdVmxGrayToBgr.o: ../RealTime/Simd/SimdVmxGrayToBgr.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxGrayToBgr.o ../RealTime/Simd/SimdVmxGrayToBgr.cpp
+
+SimdVmxGrayToBgra.o: ../RealTime/Simd/SimdVmxGrayToBgra.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxGrayToBgra.o ../RealTime/Simd/SimdVmxGrayToBgra.cpp
+
+SimdVmxHistogram.o: ../RealTime/Simd/SimdVmxHistogram.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxHistogram.o ../RealTime/Simd/SimdVmxHistogram.cpp
+
+SimdVmxInterference.o: ../RealTime/Simd/SimdVmxInterference.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxInterference.o ../RealTime/Simd/SimdVmxInterference.cpp
+
+SimdVmxInterleaveUv.o: ../RealTime/Simd/SimdVmxInterleaveUv.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxInterleaveUv.o ../RealTime/Simd/SimdVmxInterleaveUv.cpp
+
+SimdVmxLaplace.o: ../RealTime/Simd/SimdVmxLaplace.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxLaplace.o ../RealTime/Simd/SimdVmxLaplace.cpp
+
+SimdVmxLbp.o: ../RealTime/Simd/SimdVmxLbp.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxLbp.o ../RealTime/Simd/SimdVmxLbp.cpp
+
+SimdVmxMedianFilter.o: ../RealTime/Simd/SimdVmxMedianFilter.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxMedianFilter.o ../RealTime/Simd/SimdVmxMedianFilter.cpp
+
+SimdVmxOperation.o: ../RealTime/Simd/SimdVmxOperation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxOperation.o ../RealTime/Simd/SimdVmxOperation.cpp
+
+SimdVmxReduceGray2x2.o: ../RealTime/Simd/SimdVmxReduceGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxReduceGray2x2.o ../RealTime/Simd/SimdVmxReduceGray2x2.cpp
+
+SimdVmxReduceGray3x3.o: ../RealTime/Simd/SimdVmxReduceGray3x3.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxReduceGray3x3.o ../RealTime/Simd/SimdVmxReduceGray3x3.cpp
+
+SimdVmxReduceGray4x4.o: ../RealTime/Simd/SimdVmxReduceGray4x4.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxReduceGray4x4.o ../RealTime/Simd/SimdVmxReduceGray4x4.cpp
+
+SimdVmxReduceGray5x5.o: ../RealTime/Simd/SimdVmxReduceGray5x5.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxReduceGray5x5.o ../RealTime/Simd/SimdVmxReduceGray5x5.cpp
+
+SimdVmxReorder.o: ../RealTime/Simd/SimdVmxReorder.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxReorder.o ../RealTime/Simd/SimdVmxReorder.cpp
+
+SimdVmxResizeBilinear.o: ../RealTime/Simd/SimdVmxResizeBilinear.cpp ../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxResizeBilinear.o ../RealTime/Simd/SimdVmxResizeBilinear.cpp
+
+SimdVmxSegmentation.o: ../RealTime/Simd/SimdVmxSegmentation.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxSegmentation.o ../RealTime/Simd/SimdVmxSegmentation.cpp
+
+SimdVmxShiftBilinear.o: ../RealTime/Simd/SimdVmxShiftBilinear.cpp ../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxShiftBilinear.o ../RealTime/Simd/SimdVmxShiftBilinear.cpp
+
+SimdVmxSobel.o: ../RealTime/Simd/SimdVmxSobel.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdCompare.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxSobel.o ../RealTime/Simd/SimdVmxSobel.cpp
+
+SimdVmxSquaredDifferenceSum.o: ../RealTime/Simd/SimdVmxSquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxSquaredDifferenceSum.o ../RealTime/Simd/SimdVmxSquaredDifferenceSum.cpp
+
+SimdVmxStatistic.o: ../RealTime/Simd/SimdVmxStatistic.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxStatistic.o ../RealTime/Simd/SimdVmxStatistic.cpp
+
+SimdVmxStretchGray2x2.o: ../RealTime/Simd/SimdVmxStretchGray2x2.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxStretchGray2x2.o ../RealTime/Simd/SimdVmxStretchGray2x2.cpp
+
+SimdVmxTexture.o: ../RealTime/Simd/SimdVmxTexture.cpp ../RealTime/Simd/SimdBase.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxTexture.o ../RealTime/Simd/SimdVmxTexture.cpp
+
+SimdVmxYuvToBgr.o: ../RealTime/Simd/SimdVmxYuvToBgr.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxYuvToBgr.o ../RealTime/Simd/SimdVmxYuvToBgr.cpp
+
+SimdVmxYuvToBgra.o: ../RealTime/Simd/SimdVmxYuvToBgra.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVmxYuvToBgra.o ../RealTime/Simd/SimdVmxYuvToBgra.cpp
+
+SimdVsxHog.o: ../RealTime/Simd/SimdVsxHog.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdSet.h \
+		../RealTime/Simd/SimdBase.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVsxHog.o ../RealTime/Simd/SimdVsxHog.cpp
+
+SimdVsxSquaredDifferenceSum.o: ../RealTime/Simd/SimdVsxSquaredDifferenceSum.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVsxSquaredDifferenceSum.o ../RealTime/Simd/SimdVsxSquaredDifferenceSum.cpp
+
+SimdVsxSvm.o: ../RealTime/Simd/SimdVsxSvm.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdExtract.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVsxSvm.o ../RealTime/Simd/SimdVsxSvm.cpp
+
+SimdVsxYuvToHue.o: ../RealTime/Simd/SimdVsxYuvToHue.cpp ../RealTime/Simd/SimdMemory.h \
+		../RealTime/Simd/SimdDefs.h \
+		../RealTime/Simd/SimdConfig.h \
+		../RealTime/Simd/SimdLib.h \
+		../RealTime/Simd/SimdMath.h \
+		../RealTime/Simd/SimdConst.h \
+		../RealTime/Simd/SimdInit.h \
+		../RealTime/Simd/SimdStore.h \
+		../RealTime/Simd/SimdLoad.h \
+		../RealTime/Simd/SimdLog.h \
+		../RealTime/Simd/SimdConversion.h \
+		../RealTime/Simd/SimdSet.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SimdVsxYuvToHue.o ../RealTime/Simd/SimdVsxYuvToHue.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

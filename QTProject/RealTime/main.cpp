@@ -4,6 +4,7 @@
 #include <sys/shm.h>
 #include <stdio.h>
 #include <iostream>
+#include "Simd/SimdLib.hpp"
 
 typedef struct datas {
   int count;
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+    /*
     int shmid;
     datas *d;
     key_t key = 987654;
@@ -36,5 +38,6 @@ int main(int argc, char *argv[])
     d = (struct datas *)memory_segment;
     std::cout << "value : " << (*d).count << " & text : " << (*d).str << std::endl ;
     w.setLabel("aaa");
+    */
     return a.exec();
 }
