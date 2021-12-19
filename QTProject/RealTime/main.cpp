@@ -19,11 +19,11 @@ int main(int argc, char *argv[])
     w.show();
 
     typedef Simd::View<Simd::Allocator> View;
-    View view(100,100, View::Bgr24);
-    for(int i = 0 ; i < 100; i++) {
-        std::cout << std::hex << view.data[i] << std::endl;
+    View view(300,300, View::Bgr24);
+    for(int i = 0 ; i < 30000; i++) {
+        view.data[i] = 0;
     }
-    w.setImage(100,100, (uchar*) view.data);
+    w.setImage(view.width ,view.height, (uchar*) view.data);
     /*
     int shmid;
     datas *d;

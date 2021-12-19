@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>335</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,9 +19,18 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>55</width>
-      <height>18</height>
+      <width>300</width>
+      <height>300</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>300</width>
+      <height>300</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 1px; border-style: solid;</string>
     </property>
     <property name="text">
      <string>TextLabel</string>
@@ -33,7 +42,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>335</width>
      <height>23</height>
     </rect>
    </property>

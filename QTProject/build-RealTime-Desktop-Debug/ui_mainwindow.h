@@ -36,16 +36,18 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(400, 300);
+        MainWindow->resize(335, 379);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 10, 55, 18));
+        label->setGeometry(QRect(10, 10, 300, 300));
+        label->setMinimumSize(QSize(300, 300));
+        label->setStyleSheet(QStringLiteral("border-width: 1px; border-style: solid;"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 23));
+        menuBar->setGeometry(QRect(0, 0, 335, 23));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

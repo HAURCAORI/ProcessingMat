@@ -272,7 +272,8 @@ HEADERS += \
     Simd/SimdVersion.h \
     Simd/SimdView.hpp \
     Simd/SimdVmx.h \
-    Simd/SimdVsx.h
+    Simd/SimdVsx.h \
+    drawing.h
 
 FORMS += \
         mainwindow.ui
