@@ -106,7 +106,7 @@ namespace Simd
         const size_t height; /*!< \brief A height of the image. */
         const ptrdiff_t stride; /*!< \brief A row size of the image in bytes. */
         const Format format; /*!< \brief A pixel format types of the image. */
-        uint8_t * const data; /*!< \brief A pointer to the pixel data (first row) of the image. */
+        uint8_t * data; /*!< \brief A pointer to the pixel data (first row) of the image. */
 
         /*!
             Creates a new empty View structure. 

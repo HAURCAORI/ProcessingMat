@@ -3,6 +3,7 @@
 
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -25,6 +26,6 @@ void MainWindow::InitView() {
 
 void MainWindow::setImage(const int& width, const int& height, const uchar *data) {
     int bytes_per_line = width * 3;
-    QImage image( data, width, height, bytes_per_line, QImage::Format_RGB888 );
+    QImage image( data, width, height, bytes_per_line, QImage::Format_RGB32 );
     this->ui->label->setPixmap(QPixmap::fromImage(image));
 }

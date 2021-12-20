@@ -234,7 +234,8 @@ SOURCES += \
     Simd/SimdVsxHog.cpp \
     Simd/SimdVsxSquaredDifferenceSum.cpp \
     Simd/SimdVsxSvm.cpp \
-    Simd/SimdVsxYuvToHue.cpp
+    Simd/SimdVsxYuvToHue.cpp \
+    textrendering.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -273,7 +274,14 @@ HEADERS += \
     Simd/SimdView.hpp \
     Simd/SimdVmx.h \
     Simd/SimdVsx.h \
-    drawing.h
+    textrendering.h
 
 FORMS += \
         mainwindow.ui
+
+unix:!macx: LIBS += -L$$PWD/FreeType2/lib/ -lfreetype
+
+INCLUDEPATH += $$PWD/FreeType2/include/freetype2
+DEPENDPATH += $$PWD/FreeType2/include/freetype2
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/FreeType2/lib/libfreetype.a
