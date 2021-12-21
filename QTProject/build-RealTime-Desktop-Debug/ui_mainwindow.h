@@ -42,7 +42,6 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(10, 10, 300, 300));
-        label->setMinimumSize(QSize(300, 300));
         label->setStyleSheet(QStringLiteral("border-width: 1px; border-style: solid;"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);

@@ -26,6 +26,7 @@ private:
 public:
     TextRendering();
     bool Init();
+    void RenderText(View& view, std::string const text, float x, float y, float scale, View::Bgr24);
 };
 }
 #endif // TEXTRENDERING_H

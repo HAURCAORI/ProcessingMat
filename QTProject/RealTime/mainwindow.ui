@@ -23,12 +23,6 @@
       <height>300</height>
      </rect>
     </property>
-    <property name="minimumSize">
-     <size>
-      <width>300</width>
-      <height>300</height>
-     </size>
-    </property>
     <property name="styleSheet">
      <string notr="true">border-width: 1px; border-style: solid;</string>
     </property>

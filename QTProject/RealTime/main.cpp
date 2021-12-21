@@ -35,18 +35,17 @@ typedef Simd::View<Simd::Allocator> View;
         std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
         return false;
     }
-    FT_Set_Pixel_Sizes(face, 0, 48);
-
+    FT_Set_Pixel_Sizes(face, 0, 64);
 
     {
-        unsigned char c = 60;
+        unsigned char c = 65;
         // load character glyph
-        if (FT_Load_Char(face, c, FT_LOAD_RENDER | FT_LOAD_MONOCHROME ))
+        if (FT_Load_Char(face, c, FT_LOAD_RENDER ))
         {
             std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
         }
         // generate texture
-        View view(face->glyph->bitmap.width,face->glyph->bitmap.rows, View::Bgra32);
+        View view(face->glyph->bitmap.width,face->glyph->bitmap.rows, View::Gray8);
         view.data = face->glyph->bitmap.buffer;
         w.setImage(view.width ,view.height, (uchar*) view.data);
     }
