@@ -26,7 +26,7 @@ void MainWindow::InitView() {
 
 void MainWindow::setImage(const int& width, const int& height, const uchar *data) {
     this->ui->label->resize(width, height);
-    int bytes_per_line = width * 1;
-    QImage image( data, width, height, bytes_per_line, QImage::Format_Indexed8 );
+    int bytes_per_line = width * 4;
+    QImage image( data, width, height, bytes_per_line, QImage::Format_ARGB32 );
     this->ui->label->setPixmap(QPixmap::fromImage(image));
 }

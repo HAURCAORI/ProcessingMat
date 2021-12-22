@@ -13,7 +13,7 @@ typedef Simd::Point<ptrdiff_t> Point;
 typedef Simd::View<Simd::Allocator> View;
 
 struct Character {
-    View Texture;  // ID handle of the glyph texture
+    uint8_t* Texture;  // ID handle of the glyph texture
     Point Size;       // Size of glyph
     Point Bearing;    // Offset from baseline to left/top of glyph
     unsigned int Advance;    // Offset to advance to next glyph
@@ -26,7 +26,8 @@ private:
 public:
     TextRendering();
     bool Init();
-    void RenderText(View& view, std::string const text, float x, float y, float scale, View::Bgr24);
+    void RenderText(View& view, std::string const text, int x, int y, float scale);
+
 };
 }
 #endif // TEXTRENDERING_H

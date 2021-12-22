@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "Simd/SimdLib.hpp"
-
+#include "textrendering.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -21,7 +21,18 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-typedef Simd::View<Simd::Allocator> View;
+
+    typedef Simd::View<Simd::Allocator> View;
+
+    View view(300,300, View::Bgra32);
+    for(int i = 0 ; i < view.width*view.height*4; i++) {
+        view.data[i] = 255;
+    }
+    gly::TextRendering render = gly::TextRendering();
+    render.RenderText(view,"ASCII",100,100,1.0f);
+
+    w.setImage(view.width ,view.height, (uchar*) view.data);
+    /*
     FT_Library ft;
     if (FT_Init_FreeType(&ft))
     {
@@ -47,7 +58,11 @@ typedef Simd::View<Simd::Allocator> View;
         // generate texture
         View view(face->glyph->bitmap.width,face->glyph->bitmap.rows, View::Gray8);
         view.data = face->glyph->bitmap.buffer;
-        w.setImage(view.width ,view.height, (uchar*) view.data);
+
+        View out(100,100,View::Gray8);
+        //Simd::ResizeBilinear(view,out);
+        SimdResizeBilinear(view.data,view.width,view.height,view.width,out.data,out.width,out.height,out.width,1);
+        w.setImage(out.width ,out.height, (uchar*) out.data);
     }
 
 /*
