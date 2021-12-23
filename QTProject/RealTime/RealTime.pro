@@ -26,7 +26,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    textrendering.cpp \
     Simd/SimdAvx1SquaredDifferenceSum.cpp \
     Simd/SimdAvx1Svm.cpp \
     Simd/SimdAvx2AbsDifferenceSum.cpp \
@@ -235,12 +234,12 @@ SOURCES += \
     Simd/SimdVsxHog.cpp \
     Simd/SimdVsxSquaredDifferenceSum.cpp \
     Simd/SimdVsxSvm.cpp \
-    Simd/SimdVsxYuvToHue.cpp
+    Simd/SimdVsxYuvToHue.cpp \
+    drawingview.cpp
 
 
 HEADERS += \
     mainwindow.h \
-    textrendering.h \
     Simd/SimdAllocator.hpp \
     Simd/SimdAvx1.h \
     Simd/SimdAvx2.h \
@@ -275,7 +274,8 @@ HEADERS += \
     Simd/SimdVersion.h \
     Simd/SimdView.hpp \
     Simd/SimdVmx.h \
-    Simd/SimdVsx.h
+    Simd/SimdVsx.h \
+    drawingview.h
 
 
 

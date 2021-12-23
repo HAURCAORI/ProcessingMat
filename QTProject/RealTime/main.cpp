@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "Simd/SimdLib.hpp"
-#include "textrendering.h"
+#include "drawingview.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -25,54 +25,14 @@ int main(int argc, char *argv[])
     typedef Simd::View<Simd::Allocator> View;
 
     View view(300,300, View::Bgra32);
-    for(int i = 0 ; i < view.width*view.height*4; i++) {
-        view.data[i] = 255;
-    }
-    gly::TextRendering render = gly::TextRendering();
-    render.RenderText(view,"ASCII",100,100,1.0f);
+    Simd::Fill(view,255);
+
+    //gly::TextRendering render = gly::TextRendering();
+    Simd::Pixel::Bgr24 color(0,0,0);
+    drw::RenderText(view,"Test Viewport",10,100,20,color);
+
 
     w.setImage(view.width ,view.height, (uchar*) view.data);
-    /*
-    FT_Library ft;
-    if (FT_Init_FreeType(&ft))
-    {
-        std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
-        return false;
-    }
-
-    FT_Face face;
-    if (FT_New_Face(ft, "/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf", 0, &face))
-    {
-        std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
-        return false;
-    }
-    FT_Set_Pixel_Sizes(face, 0, 64);
-
-    {
-        unsigned char c = 65;
-        // load character glyph
-        if (FT_Load_Char(face, c, FT_LOAD_RENDER ))
-        {
-            std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
-        }
-        // generate texture
-        View view(face->glyph->bitmap.width,face->glyph->bitmap.rows, View::Gray8);
-        view.data = face->glyph->bitmap.buffer;
-
-        View out(100,100,View::Gray8);
-        //Simd::ResizeBilinear(view,out);
-        SimdResizeBilinear(view.data,view.width,view.height,view.width,out.data,out.width,out.height,out.width,1);
-        w.setImage(out.width ,out.height, (uchar*) out.data);
-    }
-
-/*
-    typedef Simd::View<Simd::Allocator> View;
-    View view(300,300, View::Bgr24);
-    for(int i = 0 ; i < 30000; i++) {
-        view.data[i] = 0;
-    }
-    */
-
     /*
     int shmid;
     datas *d;

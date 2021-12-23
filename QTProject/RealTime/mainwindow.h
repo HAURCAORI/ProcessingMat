@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "textrendering.h"
+#include "drawingview.h"
 
 namespace Ui {
 class MainWindow;
