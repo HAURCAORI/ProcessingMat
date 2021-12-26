@@ -235,7 +235,8 @@ SOURCES += \
     Simd/SimdVsxSquaredDifferenceSum.cpp \
     Simd/SimdVsxSvm.cpp \
     Simd/SimdVsxYuvToHue.cpp \
-    drawingview.cpp
+    drawingview.cpp \
+    plotview.cpp
 
 
 HEADERS += \
@@ -275,7 +276,8 @@ HEADERS += \
     Simd/SimdView.hpp \
     Simd/SimdVmx.h \
     Simd/SimdVsx.h \
-    drawingview.h
+    drawingview.h \
+    plotview.h
 
 
 

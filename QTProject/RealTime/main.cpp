@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
     Simd::Fill(view,255);
     //gly::TextRendering render = gly::TextRendering();
     Simd::Pixel::Bgr24 color(0,0,255);
-    drw::RenderText(view,"Test Viewport",10,100,20,color);
-    drw::DrawLine(view,10,100,100,300,color);
-    drw::DrawCircleAL(view,100,100,100,color);
+    //drw::RenderText(view,"Test Viewport",10,100,20,color);
+    drw::DrawLine(view,0,0,300,300,5,color);
+    //drw::DrawCircle(view,150,150,140,color);
     w.setImage(view.width ,view.height, (uchar*) view.data);
     /*
     int shmid;

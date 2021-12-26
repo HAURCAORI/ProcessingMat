@@ -24,6 +24,10 @@
 #endif
 
 
+  #include <chrono>
+  #define BEGIN_CHRONO std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+  #define END_CHRONO std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now() - begin).count() << "[ms]" << std::endl;
+
 typedef Simd::Point<ptrdiff_t> Point;
 typedef Simd::View<Simd::Allocator> View;
 
@@ -42,6 +46,7 @@ inline size_t getStride(View& view) {
 }
 
 Simd::Pixel::Bgra32 operator*(const Simd::Pixel::Bgr24 &color, float value);
+Simd::Pixel::Bgra32 operator*(const Simd::Pixel::Bgr24 &color, uint8_t value);
 
 void setPixel(uint8_t*& src, const Simd::Pixel::Bgr24 &color);
 void setPixel(uint8_t*& src, const Simd::Pixel::Bgra32 &color);
@@ -51,6 +56,7 @@ void setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color);
 bool RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color);
 void DrawLine(View& view, int x0, int y0, int x1, int y1, const Simd::Pixel::Bgr24& color);
 void DrawLineAL(View& view, float x0, float y0, float x1, float y1, const Simd::Pixel::Bgr24& color);
+void DrawLine(View& view, int x0, int y0, int x1, int y1, float wd, const Simd::Pixel::Bgr24& color);
 void DrawCircle(View& view, int x0, int y0, int radius, const Simd::Pixel::Bgr24& color);
 void DrawCircleAL(View& view, int x0, int y0, int r, const Simd::Pixel::Bgr24& color);
 void DrawQuarter(View& view,int x0,int y0, float x, float y, const Simd::Pixel::Bgra32& color);

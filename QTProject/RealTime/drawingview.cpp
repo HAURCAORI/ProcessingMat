@@ -4,6 +4,10 @@ Simd::Pixel::Bgra32 drw::operator*(const Simd::Pixel::Bgr24 &color, float value)
     Simd::Pixel::Bgra32 temp(color.blue ,color.green ,color.red, std::round(value*255.0));
     return temp;
 }
+Simd::Pixel::Bgra32 drw::operator*(const Simd::Pixel::Bgr24 &color, uint8_t value) {
+    Simd::Pixel::Bgra32 temp(color.blue ,color.green ,color.red, value^0xff);
+    return temp;
+}
 
 void drw::setPixel(uint8_t*& src, const Simd::Pixel::Bgr24 &color) {
     *(src++) = color.red;
@@ -41,7 +45,11 @@ void drw::setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color) {
         return;
     }
     uint8_t* src = getPixel(view,x,y);
-    setPixel(src,color);
+    if(color.alpha == 0xff) {
+        setPixel(src,(Simd::Pixel::Bgr24) color);
+    } else {
+        setPixel(src,color);
+    }
 }
 
 bool drw::RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color)
@@ -208,6 +216,33 @@ void drw::DrawLineAL(View& view, float x0, float y0, float x1, float y1, const S
     }
 }
 
+void drw::DrawLine(View& view, int x0, int y0, int x1, int y1, float wd, const Simd::Pixel::Bgr24& color){
+   BEGIN_CHRONO
+   int dx = abs(x1-x0), sx = x0 < x1 ? 1 : -1;
+   int dy = abs(y1-y0), sy = y0 < y1 ? 1 : -1;
+   int err = dx-dy, e2, x2, y2;                          /* error value e_xy */
+   float ed = dx+dy == 0 ? 1 : sqrt((float)dx*dx+(float)dy*dy);
+
+   for (wd = (wd+1)/2; ; ) {                                   /* pixel loop */
+      setPixel(view,x0,y0,color*((uint8_t) std::max(0.0f,255*(abs(err-dx+dy)/ed-wd+1))));
+      e2 = err; x2 = x0;
+      if (2*e2 >= -dx) {                                           /* x step */
+         for (e2 += dy, y2 = y0; e2 < ed*wd && (y1 != y2 || dx > dy); e2 += dx)
+            setPixel(view,x0, y2 += sy, color*((uint8_t) std::max(0.0f,255*(abs(e2)/ed-wd+1))));
+         if (x0 == x1) break;
+         e2 = err; err -= dy; x0 += sx;
+      }
+      if (2*e2 <= dy) {                                            /* y step */
+         for (e2 = dx-e2; e2 < ed*wd && (x1 != x2 || dx < dy); e2 += dy)
+            setPixel(view,x2 += sx, y0, color*((uint8_t) std::max(0.0f,255*(abs(e2)/ed-wd+1))));
+         if (y0 == y1) break;
+         err += dx; y0 += sy;
+      }
+   }
+   END_CHRONO
+}
+
+
 void drw::DrawCircle(View& view, int x0, int y0, int radius, const Simd::Pixel::Bgr24& color)
 {
     int x = radius;
@@ -229,6 +264,7 @@ void drw::DrawCircle(View& view, int x0, int y0, int radius, const Simd::Pixel::
             err -= 2*x + 1;
         }
     }
+
 }
 
 
@@ -257,7 +293,6 @@ void drw::DrawCircleAL(View& view, int x0, int y0, int r, const Simd::Pixel::Bgr
       DrawQuarter(view,x0,y0,flr,yi,color*(1-frc));
       DrawQuarter(view,x0,y0,flr+1,yi,color*(frc));
     }
-
 }
 
 void drw::DrawQuarter(View& view,int x0,int y0, float x, float y, const Simd::Pixel::Bgra32& color) {
