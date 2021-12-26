@@ -4,11 +4,9 @@
 #include <sys/shm.h>
 #include <stdio.h>
 #include <iostream>
-#include "Simd/SimdLib.hpp"
+
 #include "drawingview.h"
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
 
 typedef struct datas {
   int count;
@@ -22,16 +20,14 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    typedef Simd::View<Simd::Allocator> View;
 
-    View view(300,300, View::Bgra32);
+    View view(300,300, FORMAT);
     Simd::Fill(view,255);
-
     //gly::TextRendering render = gly::TextRendering();
-    Simd::Pixel::Bgr24 color(0,0,0);
+    Simd::Pixel::Bgr24 color(0,0,255);
     drw::RenderText(view,"Test Viewport",10,100,20,color);
-
-
+    drw::DrawLine(view,10,100,100,300,color);
+    drw::DrawCircleAL(view,100,100,100,color);
     w.setImage(view.width ,view.height, (uchar*) view.data);
     /*
     int shmid;

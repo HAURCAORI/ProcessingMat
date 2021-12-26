@@ -1,11 +1,53 @@
 #include "drawingview.h"
 
+Simd::Pixel::Bgra32 drw::operator*(const Simd::Pixel::Bgr24 &color, float value) {
+    Simd::Pixel::Bgra32 temp(color.blue ,color.green ,color.red, std::round(value*255.0));
+    return temp;
+}
 
+void drw::setPixel(uint8_t*& src, const Simd::Pixel::Bgr24 &color) {
+    *(src++) = color.red;
+    *(src++) = color.green;
+    *(src++) = color.blue;
+#if CHANNEL==4
+    *(src++) = 255;
+#endif
+}
+void drw::setPixel(uint8_t*& src, const Simd::Pixel::Bgra32 &color) {
+    uint8_t imask = color.alpha;
+    uint8_t mask = imask^0xff;
+    *(src) = ((*(src)*mask)>>8)+((color.red*imask)>>8);
+    ++src;
+    *(src) = ((*(src)*mask)>>8)+((color.green*imask)>>8);
+    ++src;
+    *(src) = ((*(src)*mask)>>8)+((color.blue*imask)>>8);
+    ++src;
+#if CHANNEL==4
+    *(src++) = 255;
+#endif
+}
 
-bool drw::RenderText(View& view, std::string const text, int x, int y, int font_size, Simd::Pixel::Bgr24 color)
+void drw::setPixel(View& view,int x, int y, const Simd::Pixel::Bgr24 &color) {
+    if((unsigned int) x >= view.width || x < 0 || (unsigned int) y >= view.height || y < 0)
+    {
+        return;
+    }
+    uint8_t* src = getPixel(view,x,y);
+    setPixel(src,color);
+}
+void drw::setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color) {
+    if((unsigned int) x >= view.width || x < 0 || (unsigned int) y >= view.height || y < 0)
+    {
+        return;
+    }
+    uint8_t* src = getPixel(view,x,y);
+    setPixel(src,color);
+}
+
+bool drw::RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color)
 {
 
-    if(x > view.width || x < 0 || y > view.height || y < 0)
+    if((unsigned int) x > view.width || x < 0 || (unsigned int) y > view.height || y < 0)
     {
         return false;
     }
@@ -42,15 +84,15 @@ bool drw::RenderText(View& view, std::string const text, int x, int y, int font_
             if(sy < 0) { continue; }
             for (int sx = x + face->glyph->bitmap_left, cx = 0; cx < w; sx++, cx++)
             {
-                if(sx >= view.width) { continue; }
+                if( (unsigned int) sx >= view.width) { continue; }
 
-                int index = sy*view.width*4+sx*4;
+                uint8_t* src = getPixel(view,sx,sy);
                 int index2 = cy*w+cx;
                 uint8_t mask = face->glyph->bitmap.buffer[index2]^0xff;
                 uint8_t imask = mask^0xff;
-                view.data[index] = ((view.data[index]*mask)>>8)+((color.red*imask)>>8);
-                view.data[index + 1] = ((view.data[index+1]*mask)>>8)+((color.green*imask)>>8);
-                view.data[index + 2] = ((view.data[index+2]*mask)>>8)+((color.blue*imask)>>8);
+                *(src++) = ((*(src)*mask)>>8)+((color.red*imask)>>8);
+                *(src++) = ((*(src)*mask)>>8)+((color.green*imask)>>8);
+                *(src++) = ((*(src)*mask)>>8)+((color.blue*imask)>>8);
             }
         }
 
@@ -62,7 +104,7 @@ bool drw::RenderText(View& view, std::string const text, int x, int y, int font_
     return true;
 }
 
-void drw::DrawLine(View& view, int x0, int y0, int x1, int y1, Simd::Pixel::Bgr24 color){
+void drw::DrawLine(View& view, int x0, int y0, int x1, int y1, const Simd::Pixel::Bgr24& color){
     int dx, dy, p, x, y;
 
     dx=x1-x0;
@@ -73,20 +115,154 @@ void drw::DrawLine(View& view, int x0, int y0, int x1, int y1, Simd::Pixel::Bgr2
 
     p=2*dy-dx;
 
+    uint8_t* src = getPixel(view,x0,y0);
+    size_t stride = getStride(view);
+
     while(x<x1)
     {
         if(p>=0)
         {
-            //uint8_t * p =drw::Pixels(view,x,y)
-            //putpixel(x,y,7);
+            setPixel(src,color);
+
+            src += stride*CHANNEL;
             y=y+1;
             p=p+2*dy-2*dx;
         }
         else
         {
-            //putpixel(x,y,7);
+            setPixel(src,color);
+
             p=p+2*dy;
         }
         x=x+1;
     }
+}
+
+
+void drw::DrawLineAL(View& view, float x0, float y0, float x1, float y1, const Simd::Pixel::Bgr24& color) {
+    auto ipart = [](float x) -> int {return int(std::floor(x));};
+    auto round = [](float x) -> float {return std::round(x);};
+    auto fpart = [](float x) -> float {return x - std::floor(x);};
+    auto rfpart = [=](float x) -> float {return 1 - fpart(x);};
+
+    const bool steep = abs(y1 - y0) > abs(x1 - x0);
+    if (steep) {
+        std::swap(x0,y0);
+        std::swap(x1,y1);
+    }
+    if (x0 > x1) {
+        std::swap(x0,x1);
+        std::swap(y0,y1);
+    }
+
+    const float dx = x1 - x0;
+    const float dy = y1 - y0;
+    const float gradient = (dx == 0) ? 1 : dy/dx;
+
+    int xpx11;
+    float intery;
+    {
+        const float xend = round(x0);
+        const float yend = y0 + gradient * (xend - x0);
+        const float xgap = rfpart(x0 + 0.5);
+        xpx11 = int(xend);
+        const int ypx11 = ipart(yend);
+        if (steep) {
+            setPixel(view,ypx11,xpx11,color*(rfpart(yend) * xgap)); // rfpart(yend) * xgap
+            setPixel(view,ypx11+1,xpx11,color*(fpart(yend) * xgap)); // fpart(yend) * xgap
+        } else {
+            setPixel(view,xpx11,ypx11,color*(rfpart(yend) * xgap)); // rfpart(yend) * xgap
+            setPixel(view,xpx11,ypx11+1,color*(fpart(yend) * xgap)); // fpart(yend) * xgap
+        }
+        intery = yend + gradient;
+    }
+
+    int xpx12;
+    {
+        const float xend = round(x1);
+        const float yend = y1 + gradient * (xend - x1);
+        const float xgap = rfpart(x1 + 0.5);
+        xpx12 = int(xend);
+        const int ypx12 = ipart(yend);
+        if (steep) {
+            setPixel(view,ypx12,xpx12,color*(rfpart(yend) * xgap)); // rfpart(yend) * xgap
+            setPixel(view,ypx12+1,xpx12,color*(fpart(yend) * xgap)); // fpart(yend) * xgap
+        } else {
+            setPixel(view,xpx12,ypx12,color*(rfpart(yend) * xgap)); // rfpart(yend) * xgap
+            setPixel(view,xpx12,ypx12+1,color*(fpart(yend) * xgap)); // fpart(yend) * xgap
+        }
+    }
+
+    if (steep) {
+        for (int x = xpx11 + 1; x < xpx12; x++) {
+            setPixel(view,ipart(intery),x,color*(rfpart(intery))); // rfpart(intery)
+            setPixel(view,ipart(intery)+1,x,color*(fpart(intery))); // fpart(intery)
+            intery += gradient;
+        }
+    } else {
+        for (int x = xpx11 + 1; x < xpx12; x++) {
+            setPixel(view,x,ipart(intery),color*(rfpart(intery))); // rfpart(intery)
+            setPixel(view,x,ipart(intery)+1,color*(fpart(intery))); // fpart(intery)
+            intery += gradient;
+        }
+    }
+}
+
+void drw::DrawCircle(View& view, int x0, int y0, int radius, const Simd::Pixel::Bgr24& color)
+{
+    int x = radius;
+    int y = 0;
+    int err = 0;
+
+    while (x >= y)
+    {
+        DrawQuarter(view,x0,y0,x,y,color);
+        DrawQuarter(view,x0,y0,y,x,color);
+
+        if (err <= 0) {
+            y += 1;
+            err += 2*y + 1;
+        }
+
+        if (err > 0) {
+            x -= 1;
+            err -= 2*x + 1;
+        }
+    }
+}
+
+
+void drw::DrawCircleAL(View& view, int x0, int y0, int r, const Simd::Pixel::Bgr24& color) {
+    auto fpart = [](float x) -> float {return x - std::floor(x);};
+    auto floor = [](float x) -> float {return std::floor(x);};
+    auto round = [](float x) -> float {return std::round(x);};
+
+
+    float rsq = r*r;
+    float ffd = round(r/SQRT2());
+
+    for(int xi = 0; xi < ffd; xi++) {
+      float yj = std::sqrt(rsq - xi*xi);  // the "step 2" formula noted above
+      float frc = fpart(yj);
+      float flr = floor(yj);
+
+      DrawQuarter(view,x0,y0,xi,flr,color*(1-frc));
+      DrawQuarter(view,x0,y0,xi,flr+1,color*(frc));
+    }
+
+    for(int yi = 0; yi < ffd; yi++) {
+      float xj = std::sqrt (rsq-yi*yi);
+      float frc = fpart(xj);
+      float flr = floor(xj);
+      DrawQuarter(view,x0,y0,flr,yi,color*(1-frc));
+      DrawQuarter(view,x0,y0,flr+1,yi,color*(frc));
+    }
+
+}
+
+void drw::DrawQuarter(View& view,int x0,int y0, float x, float y, const Simd::Pixel::Bgra32& color) {
+    setPixel(view,x0 + x, y0 + y, color);
+    setPixel(view,x0 - x, y0 + y, color);
+    setPixel(view,x0 - x, y0 - y, color);
+    setPixel(view,x0 + x, y0 - y, color);
 }
