@@ -17,7 +17,7 @@ public:
     ~MainWindow();
     void setLabel(const QString);
     void InitView();
-    void setImage(const int& width, const int& height, const uchar *data);
+    void setImage(const int& width, const int& height, uchar* data);
 private:
     Ui::MainWindow *ui;
 

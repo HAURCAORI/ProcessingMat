@@ -217,7 +217,6 @@ void drw::DrawLineAL(View& view, float x0, float y0, float x1, float y1, const S
 }
 
 void drw::DrawLine(View& view, int x0, int y0, int x1, int y1, float wd, const Simd::Pixel::Bgr24& color){
-   BEGIN_CHRONO
    int dx = abs(x1-x0), sx = x0 < x1 ? 1 : -1;
    int dy = abs(y1-y0), sy = y0 < y1 ? 1 : -1;
    int err = dx-dy, e2, x2, y2;                          /* error value e_xy */
@@ -239,7 +238,6 @@ void drw::DrawLine(View& view, int x0, int y0, int x1, int y1, float wd, const S
          err += dx; y0 += sy;
       }
    }
-   END_CHRONO
 }
 
 

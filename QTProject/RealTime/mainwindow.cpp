@@ -24,7 +24,7 @@ void MainWindow::InitView() {
 
 }
 
-void MainWindow::setImage(const int& width, const int& height, const uchar *data) {
+void MainWindow::setImage(const int& width, const int& height, uchar* data) {
     this->ui->label->resize(width, height);
     int bytes_per_line = width * CHANNEL;
     QImage image( data, width, height, bytes_per_line, FORMATQT );
