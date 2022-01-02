@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-
+    Simd::Pixel::Bgr24 color(0,0,255);
 /*
     View view = View(300,300, FORMAT);
     Simd::Fill(view,255);
@@ -31,10 +31,15 @@ int main(int argc, char *argv[])
     w.setImage(view.width ,view.height, (uchar*) view.data);
 
 */
-    rtplot plot(300, 300);
-    plot.view = View(300, 300, FORMAT);
+    rtplot plot(100, 300);
+    void* ad = Simd::Allocator::Allocate(200*200*4, 16);
+
+
+    plot.view = View(300, 300,300*4, FORMAT, ad);
     Simd::Fill(plot.view,255);
+    drw::DrawLine(plot.view,0,0,300,300,5,color);
     w.setImage(plot.view.width ,plot.view.height, (uchar*) plot.view.data);
+    Simd::Allocator::Free(ad);
     /*
     int shmid;
     datas *d;
