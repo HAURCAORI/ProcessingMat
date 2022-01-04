@@ -31,15 +31,15 @@ int main(int argc, char *argv[])
     w.setImage(view.width ,view.height, (uchar*) view.data);
 
 */
-    rtplot plot(100, 300);
-    void* ad = Simd::Allocator::Allocate(200*200*4, 16);
-
-
+    rtplot plot(500, 400);
+    w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
+/*
     plot.view = View(300, 300,300*4, FORMAT, ad);
     Simd::Fill(plot.view,255);
     drw::DrawLine(plot.view,0,0,300,300,5,color);
     w.setImage(plot.view.width ,plot.view.height, (uchar*) plot.view.data);
-    Simd::Allocator::Free(ad);
+    */
+
     /*
     int shmid;
     datas *d;

@@ -5,22 +5,33 @@ plot::plot() {
 }
 
 plot::plot(int width,int height) {
-    size_figure.width = width;
-    size_figure.height = height;
+    size_chart.width = width;
+    size_chart.height = height;
     if(init()) {
         render();
     }
 }
 
+plot::~plot() {
+    Simd::Allocator::Free(view_chart_memory);
+    Simd::Allocator::Free(view_plot_memory);
+}
+
 bool plot::init() {
-    if(size_figure.height <= 0 || size_figure.width <= 0)
+    if(size_chart.height <= 0 || size_chart.width <= 0)
     {
         return false;
     }
-    size_plot.width = (size_figure.width - margin_outer.left - margin_outer.right)*0.6;
-    size_plot.height = (size_figure.height - margin_outer.top - margin_outer.bottom)*0.8;
-    //view = View(size_plot.width, size_plot.height, FORMAT);
-    //Simd::Fill(view,255);
+    size_plot.width = (size_chart.width);
+    size_plot.height = (size_chart.height)*0.8;
+
+    view_chart_memory = Simd::Allocator::Allocate(size_chart.width*size_chart.height*4, 16);
+    view_chart = View(size_chart.width, size_chart.height, FORMAT, view_chart_memory);
+    Simd::Fill(view_chart,255);
+
+    view_plot_memory = Simd::Allocator::Allocate(size_plot.width*size_plot.height*4, 16);
+    view_plot = View(size_plot.width, size_plot.height, FORMAT, view_plot_memory);
+    Simd::Fill(view_plot,255);
     return true;
 }
 
@@ -29,16 +40,19 @@ void plot::render() {
 
 }
 
-int plot::getWidth(){ return size_figure.width; }
-int plot::getHeight(){return size_figure.height; }
+int plot::getWidth(){ return size_chart.width; }
+int plot::getHeight(){return size_chart.height; }
 
-const View& plot::getView() {
-    return view;
+const View& plot::getPlot() {
+    return view_chart;
 }
+
+const uint8_t* plot::getBitmap() {
+    return view_chart.data;
+}
+
+
 rtplot::rtplot(int width,int height) : plot(width,height){
 
 }
 
-uint8_t* rtplot::getBitmap() {
-    return getView().data;
-}

@@ -236,8 +236,7 @@ SOURCES += \
     Simd/SimdVsxSvm.cpp \
     Simd/SimdVsxYuvToHue.cpp \
     drawingview.cpp \
-    rtplot.cpp \
-    rtview.cpp
+    rtplot.cpp
 
 
 HEADERS += \
@@ -278,8 +277,7 @@ HEADERS += \
     Simd/SimdVmx.h \
     Simd/SimdVsx.h \
     drawingview.h \
-    rtplot.h \
-    rtview.h
+    rtplot.h
 
 
 
