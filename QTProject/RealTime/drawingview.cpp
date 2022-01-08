@@ -80,15 +80,16 @@ void drw::Overlay(View& dest, int x, int y, View& src) {
     }
 }
 
-void AlphaBlend(uint8_t*& dest, int x, int y, uint8_t*& alpha, int w, int h, const Simd::Pixel::Bgr24& color) {
+void AlphaBlend(View& dest, int x, int y, uint8_t*& alpha, int w, int h, const Simd::Pixel::Bgr24& color) {
     for (int cy = 0; cy < h; y++, cy++)
     {
         if(y < 0) { continue; }
         for (int cx = 0; cx < w; x++, cx++)
         {
-            if( (unsigned int) x >= view.width) { continue; }
-
-            uint8_t* src = getPixel(dest,x,y);
+            if( (unsigned int) x >= dest.width) { break; }
+/*
+            uint8_t* d = getPixel(dest,x,y);
+            __m256i dm = _mm256_loadu_si256((__m256i_u*) d);
 
             int index2 = cy*w+cx;
             uint8_t mask = alpha[index2]^0xff;

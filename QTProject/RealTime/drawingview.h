@@ -44,10 +44,6 @@ inline uint8_t* getPixel(View& view,int x,int y) {
     return &view.data[(CHANNEL*(x))+(view.width*CHANNEL*(y))];
 }
 
-inline uint8_t* getPixel(uint8_t*& data,int x,int y) {
-    return &data[(CHANNEL*(x))+(view.width*CHANNEL*(y))];
-}
-
 
 inline size_t getStride(View& view) {
     return view.width;
@@ -62,7 +58,7 @@ void setPixel(View& view,int x, int y, const Simd::Pixel::Bgr24 &color);
 void setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color);
 
 void Overlay(View& dest, int x, int y, View& src);
-void AlphaBlend(uint8_t*& dest, int x, int y, uint8_t*& mask, int mw, int mh, const Simd::Pixel::Bgr24& color);
+void AlphaBlend(View*& dest, int x, int y, uint8_t*& mask, int mw, int mh, const Simd::Pixel::Bgr24& color);
 
 bool RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color);
 void DrawLine(View& view, int x0, int y0, int x1, int y1, const Simd::Pixel::Bgr24& color);
