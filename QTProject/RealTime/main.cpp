@@ -19,22 +19,22 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
     Simd::Pixel::Bgr24 color(0,0,255);
     View view1 = View(200,200, FORMAT);
     Simd::Fill(view1,255);
-    drw::RenderText(view1,"Hello World!",10,100,20,color);
-    /*
-    View view2 = View(81,81, FORMAT);
-    for(int i = 0 ; i < 81*81; i+=1)
+    //drw::RenderText(view1,"Hello World!",10,100,20,color);
+
+    View view2 = View(87,80, FORMAT);
+    for(int i = 0 ; i < 87*80; i+=1)
     {
         view2.data[i*4] = 255;
         view2.data[i*4+1] = 0;
         view2.data[i*4+2] = 0;
         view2.data[i*4+3] = 255;
     }
-    //w.setImage(50 ,50, (uchar*) view2.data);
     drw::Overlay(view1,150,50,view2);
-    */
+
 
     w.setImage(200 ,200, (uchar*) view1.data);
 

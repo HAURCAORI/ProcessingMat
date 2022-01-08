@@ -55,13 +55,12 @@ void drw::setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color) {
 void drw::Overlay(View& dest, int x, int y, View& src) {
     int h = src.height;
     int w = src.width;
-    int re = src.width % 8;
     for (int sy = y, cy = 0; cy < h; sy++, cy++)
     {
         if((unsigned int) sy >= dest.height) { break; }
         int sx = x;
         int cx = 0;
-        for (; cx + re < w; sx+=8, cx+=8)
+        for (; cx + 8 <= w; sx+=8, cx+=8)
         {
             if( (unsigned int) sx + 8 >= dest.width) { break; }
             __m256i dm = _mm256_loadu_si256((__m256i_u*) getPixel(src,cx,cy));
