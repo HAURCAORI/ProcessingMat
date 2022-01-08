@@ -290,3 +290,5 @@ INCLUDEPATH += $$PWD/FreeType2/include/freetype2
 DEPENDPATH += $$PWD/FreeType2/include/freetype2
 
 unix:!macx: PRE_TARGETDEPS += $$PWD/FreeType2/lib/libfreetype.a
+
+QMAKE_CXXFLAGS += -mavx2

@@ -3,12 +3,15 @@
 #include <iostream>
 #include <map>
 #include <ft2build.h>
+
+#include <smmintrin.h>
+#include <immintrin.h>
+#include <stdio.h>
+
 #include FT_FREETYPE_H
 
 #ifndef TEXTRENDERING_H
 #define TEXTRENDERING_H
-
-#define F2B(f) std::round(f * 255.0)
 
 #define CHANNEL 4
 
@@ -41,6 +44,11 @@ inline uint8_t* getPixel(View& view,int x,int y) {
     return &view.data[(CHANNEL*(x))+(view.width*CHANNEL*(y))];
 }
 
+inline uint8_t* getPixel(uint8_t*& data,int x,int y) {
+    return &data[(CHANNEL*(x))+(view.width*CHANNEL*(y))];
+}
+
+
 inline size_t getStride(View& view) {
     return view.width;
 }
@@ -52,6 +60,9 @@ void setPixel(uint8_t*& src, const Simd::Pixel::Bgr24 &color);
 void setPixel(uint8_t*& src, const Simd::Pixel::Bgra32 &color);
 void setPixel(View& view,int x, int y, const Simd::Pixel::Bgr24 &color);
 void setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color);
+
+void Overlay(View& dest, int x, int y, View& src);
+void AlphaBlend(uint8_t*& dest, int x, int y, uint8_t*& mask, int mw, int mh, const Simd::Pixel::Bgr24& color);
 
 bool RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color);
 void DrawLine(View& view, int x0, int y0, int x1, int y1, const Simd::Pixel::Bgr24& color);
