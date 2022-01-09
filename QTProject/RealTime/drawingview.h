@@ -4,6 +4,7 @@
 #include <map>
 #include <ft2build.h>
 
+#include <memory>
 #include <smmintrin.h>
 #include <immintrin.h>
 #include <stdio.h>
@@ -49,6 +50,22 @@ inline size_t getStride(View& view) {
     return view.width;
 }
 
+
+const __m256i zero = _mm256_setzero_si256();
+const __m256i max = _mm256_set1_epi8(0xff);
+
+inline __m256i DivideI16By255(__m256i value)
+{
+    return _mm256_srli_epi16(_mm256_add_epi16(_mm256_add_epi16(value, _mm256_set1_epi16(1)), _mm256_srli_epi16(value, 8)), 8);
+}
+
+inline __m256i AlphaBlendingI16(__m256i src, __m256i dst, __m256i mask, __m256i imask)
+{
+    return DivideI16By255(_mm256_add_epi16(_mm256_mullo_epi16(src, mask), _mm256_mullo_epi16(dst, imask)));
+}
+
+
+
 Simd::Pixel::Bgra32 operator*(const Simd::Pixel::Bgr24 &color, float value);
 Simd::Pixel::Bgra32 operator*(const Simd::Pixel::Bgr24 &color, uint8_t value);
 
@@ -58,7 +75,7 @@ void setPixel(View& view,int x, int y, const Simd::Pixel::Bgr24 &color);
 void setPixel(View& view,int x, int y, const Simd::Pixel::Bgra32 &color);
 
 void Overlay(View& dest, int x, int y, View& src);
-void AlphaBlend(View*& dest, int x, int y, uint8_t*& mask, int mw, int mh, const Simd::Pixel::Bgr24& color);
+void AlphaBlend(View& dest, int x, int y, uint8_t*& alpha, int w, int h, const Simd::Pixel::Bgr24& color);
 
 bool RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color);
 void DrawLine(View& view, int x0, int y0, int x1, int y1, const Simd::Pixel::Bgr24& color);

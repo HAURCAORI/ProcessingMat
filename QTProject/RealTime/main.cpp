@@ -21,9 +21,11 @@ int main(int argc, char *argv[])
     w.show();
 
     Simd::Pixel::Bgr24 color(0,0,255);
+
+    /*
     View view1 = View(200,200, FORMAT);
     Simd::Fill(view1,255);
-    //drw::RenderText(view1,"Hello World!",10,100,20,color);
+    drw::RenderText(view1,"Hello World! Long Text",10,100,20,color);
 
     View view2 = View(87,80, FORMAT);
     for(int i = 0 ; i < 87*80; i+=1)
@@ -37,7 +39,7 @@ int main(int argc, char *argv[])
 
 
     w.setImage(200 ,200, (uchar*) view1.data);
-
+*/
 /*
     View view = View(300,300, FORMAT);
     Simd::Fill(view,255);
@@ -49,10 +51,10 @@ int main(int argc, char *argv[])
     w.setImage(view.width ,view.height, (uchar*) view.data);
 
 */
-    /*
+
     rtplot plot(500, 400);
     w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
-    */
+
 /*
     plot.view = View(300, 300,300*4, FORMAT, ad);
     Simd::Fill(plot.view,255);

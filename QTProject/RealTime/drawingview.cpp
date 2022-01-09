@@ -79,32 +79,89 @@ void drw::Overlay(View& dest, int x, int y, View& src) {
     }
 }
 
-void AlphaBlend(View& dest, int x, int y, uint8_t*& alpha, int w, int h, const Simd::Pixel::Bgr24& color) {
-    for (int cy = 0; cy < h; y++, cy++)
+void drw::AlphaBlend(View& dest, int x, int y, uint8_t*& alpha, int w, int h, const Simd::Pixel::Bgr24& color) {
+    for (int sy = y, cy = 0; cy < h; sy++, cy++)
     {
-        if(y < 0) { continue; }
-        for (int cx = 0; cx < w; x++, cx++)
+        if(sy < 0) { continue; }
+        int sx = x;
+        int cx = 0;
+
+        for (; cx < w; sx++, cx++)
         {
-            if( (unsigned int) x >= dest.width) { break; }
-/*
-            uint8_t* d = getPixel(dest,x,y);
+            if( (unsigned int) sx >= dest.width) { continue; }
+            uint8_t* src2 = getPixel(dest,sx,sy);
+            int index2 = cy*w + cx;
+
+            uint8_t imask = alpha[index2];
+            uint8_t mask = imask^0xff;
+
+            *(src2++) = ((*(src2)*mask)>>8)+((color.red*imask)>>8);
+            *(src2++) = ((*(src2)*mask)>>8)+((color.green*imask)>>8);
+            *(src2++) = ((*(src2)*mask)>>8)+((color.blue*imask)>>8);
+        }
+    }
+    /*
+    uint32_t rgb = (0xff) | (uint32_t(color.blue) << 8) | (uint32_t(color.green) << 16) | (uint32_t(color.red) << 24);
+    __m256i src = _mm256_set1_epi32(rgb);
+    for (int sy = y, cy = 0; cy < h; sy++, cy++)
+    {
+        if(sy < 0) { continue; }
+        int sx = x;
+        int cx = 0;
+
+        for (; cx + 8 < w; sx+=8, cx+=8)
+        {
+            if( (unsigned int) sx >= dest.width) { break; }
+
+            int index2 = cy*w+cx;
+            __m256i dm = _mm256_loadu_si256((__m256i_u*) getPixel(dest, sx,sy));
+            uint32_t alpha_mask[8];
+            for(int i = 0; i < 8; i++)
+            {
+                alpha_mask[i] = uint32_t(alpha[index2+i]) | (uint32_t(alpha[index2+i]) << 8) | (uint32_t(alpha[index2+i]) << 16) | (uint32_t(alpha[index2+i]) << 24);
+            }
+
+            __m256i mask = _mm256_setr_epi32(alpha_mask[0],alpha_mask[1],alpha_mask[2],alpha_mask[3],alpha_mask[4],alpha_mask[5],alpha_mask[6],alpha_mask[7]);
+            __m256i imask = _mm256_sub_epi8(max, mask);
+
+            __m256i lo = AlphaBlendingI16(_mm256_unpacklo_epi8(dm, zero), _mm256_unpacklo_epi8(src, zero), _mm256_unpacklo_epi8(imask, zero), _mm256_unpacklo_epi8(mask, zero));
+            __m256i hi = AlphaBlendingI16(_mm256_unpackhi_epi8(dm, zero), _mm256_unpackhi_epi8(src, zero), _mm256_unpackhi_epi8(imask, zero), _mm256_unpacklo_epi8(mask, zero));
+
+            _mm256_storeu_si256((__m256i*) getPixel(dest,sx,sy),_mm256_packus_epi16(lo, hi));
+
+
+            uint8_t* d = getPixel(dest,sx,sy);
             __m256i dm = _mm256_loadu_si256((__m256i_u*) d);
 
             int index2 = cy*w+cx;
             uint8_t mask = alpha[index2]^0xff;
             uint8_t imask = mask^0xff;
-            /*
+
             *(src++) = ((*(src)*mask)>>8)+((color.red*imask)>>8);
             *(src++) = ((*(src)*mask)>>8)+((color.green*imask)>>8);
             *(src++) = ((*(src)*mask)>>8)+((color.blue*imask)>>8);
-            */
+
+        }
+
+        for (; cx < w; sx++, cx++)
+        {
+            if( (unsigned int) sx >= dest.width) { continue; }
+            uint8_t* src2 = getPixel(dest,sx,sy);
+            int index2 = cy*w + cx;
+
+            uint8_t imask = alpha[index2];
+            uint8_t mask = imask^0xff;
+
+            *(src2++) = ((*(src2)*mask)>>8)+((color.red*imask)>>8);
+            *(src2++) = ((*(src2)*mask)>>8)+((color.green*imask)>>8);
+            *(src2++) = ((*(src2)*mask)>>8)+((color.blue*imask)>>8);
         }
     }
+*/
 }
 
 bool drw::RenderText(View& view, std::string const text, int x, int y, int font_size, const Simd::Pixel::Bgr24& color)
 {
-
     if((unsigned int) x > view.width || x < 0 || (unsigned int) y > view.height || y < 0)
     {
         return false;
@@ -127,7 +184,7 @@ bool drw::RenderText(View& view, std::string const text, int x, int y, int font_
     FT_Set_Pixel_Sizes(face, 0, font_size);
 
     std::string::const_iterator c;
-        BEGIN_CHRONO
+
     for (c = text.begin(); c != text.end(); c++)
     {
         if (FT_Load_Char(face, *c, FT_LOAD_RENDER))
@@ -137,8 +194,7 @@ bool drw::RenderText(View& view, std::string const text, int x, int y, int font_
         }
         float w = face->glyph->bitmap.width;
         float h = face->glyph->bitmap.rows;
-
-        //drw::AlphaBlend(view.data,x + face->glyph->bitmap_left, y-face->glyph->bitmap_top, face->glyph->bitmap.buffer,w,h,color);
+        //drw::AlphaBlend(view ,x + face->glyph->bitmap_left, y - face->glyph->bitmap_top, face->glyph->bitmap.buffer,w,h,color);
 
 
         for (int sy = y-face->glyph->bitmap_top, cy = 0; cy < h; sy++, cy++)
@@ -160,7 +216,7 @@ bool drw::RenderText(View& view, std::string const text, int x, int y, int font_
 
         x += face->glyph->advance.x >> 6;
     }
-    END_CHRONO
+
     FT_Done_Face(face);
     FT_Done_FreeType(ft);
 
