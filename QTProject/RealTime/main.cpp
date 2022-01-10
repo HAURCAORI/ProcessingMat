@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 */
 
-    rtplot plot(500, 400);
+    plot2D plot(500, 400);
     w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
 
 /*

@@ -1,39 +1,25 @@
 #pragma once
 #include <iostream>
-#include<vector>
+#include <vector>
 #include "drawingview.h"
 #ifndef RTPLOT_H
 #define RTPLOT_H
 
+#define DEFAULT_FONT "Ubuntu-L.ttf"
 #define DEFAULT_FONT_SIZE 12
+
+//Color Preset
+#define COLOR_DARK Simd::Pixel::Bgr24(0,0,0)
+
 
 typedef unsigned char Flag;
 
-
-enum Origin {
-    ORIGIN_CENTER,
-    ORIGIN_TOP,
-    ORIGIN_RIGHT,
-    ORIGIN_BOTTOM,
-    ORIGIN_LEFT,
-    ORIGIN_TOP_RIGHT,
-    ORIGIN_TOP_LEFT,
-    ORIGIN_BOTTOM_RIGHT,
-    ORIGIN_BOTTOM_LEFT
-};
-
-enum ChartAttribute {
-    TITLE = (0x01 << 0), // 1
-    AXIS_X = (0x01 << 1), // 2
-    AXIS_Y = (0x01 << 2), // 4
-    LEGEND = (0x01 << 3), // 8
-};
-
+//위치 및 크기 관련 struct
 struct Margin {
-    int top = 0;
-    int right = 0;
-    int bottom = 0;
-    int left = 0;
+    int top = 20;
+    int right = 20;
+    int bottom = 20;
+    int left = 20;
 };
 
 struct Size {
@@ -47,50 +33,134 @@ struct Position {
 };
 
 
-struct Text {
-    std::string value;
-    std::string font;
+//Text 관련 struct
+struct TextAttribute {
+    std::string font = DEFAULT_FONT;
     float size = DEFAULT_FONT_SIZE;
+    Simd::Pixel::Bgr24 color = COLOR_DARK;
 };
 
-struct Axis {
-    Text text;
-    Size size;
-    Position position;
-    Origin origin = ORIGIN_CENTER;
-};
 
 struct Title {
-    Text text;
+    std::string text;
+    TextAttribute text_attribute;
     Size size;
     Position position;
-    Origin origin = ORIGIN_CENTER;
 };
 
-class plot {
-private:
-    Size size_chart; // chart size
+//Axis 관련 enum
+enum class AxisType {
+    NUMERICAL,
+    LEGEND,
+    SCALE
+};
 
+enum class Dock {
+    TOP,
+    RIGHT,
+    BOTTOM,
+    LEFT
+};
+
+//Data 관련
+enum class DataType {
+    LEG_NUM,
+    NUM_NUM
+};
+struct DataSet{
+    std::string id;
+    DataType type;
+    std::vector<std::string> data0;
+    std::vector<float> data1;
+    std::vector<float> data2;
+};
+class Axis {
+private:
+    /*
+     * 초기화 시 size에서 major_interval_pixel_min과 max의 중간값으로  major_ticks 산출 -> increment계산 후 major_ticks개수 만큼 draw
+     * scale 변경 시 increment를 scale에 맞추어 줄임 -> major_ticks 계산 -> 계산 값에 맞게 draw
+     */
+
+    //Common
+
+    //NUMERICAL
+    float max_value = 1.0f; // 계산값
+    float min_value = 0.0f; // 계산값
+    float increment;
+    int major_ticks;
+    int minor_ticks;
+    float offset;
+    float scale;
+    float major_interval_pixel_min = 100;
+    float major_interval_pixel_max = 300;
+
+    //LEGEND
+    std::vector<std::string> legend;
+    int legend_count;
+
+    //SCALE
+
+
+    //Axis
+    View view_axis;
+    void* view_axis_memory;
+
+    std::string id;
+
+    Dock dock;
+
+    std::string title;
+    TextAttribute text_attribute;
+    Size size_plot;
+    Size size;
+public:
+    Axis(std::string id,Dock dock, Size size_plot, AxisType axis_type);
+    //~Axis();
+
+    //Init
+    bool Init();
+
+    //View
+    const View& getView();
+    const uint8_t* getBitmap();
+
+    //Attribute
+    void setDock(Dock dock);
+    void setTitle(std::string title);
+    void setFont(std::string font);
+    void setFontSize(float size);
+    void setFontColor(Simd::Pixel::Bgr24 color);
+    Size getSize();
+
+    //Function
+    void TransformScale(float scale);
+    void TransformOffset(float offset);
+};
+
+class plot2D {
+private:
+    //Layout
+    Size size_chart; // chart size
     Size size_plot;
     Position pos_plot;
-    Origin plot_origin = ORIGIN_TOP_LEFT;
 
     Margin margins;
 
-    ChartAttribute attribute;
-    Title title;
-    Axis axis_x;
-    Axis axis_y;
+    //plot2D
     View view_chart;
     View view_plot;
-
     void* view_chart_memory;
     void* view_plot_memory;
 
+    std::vector<Axis> axis;
+    std::vector<DataSet> dataset;
+
+    Title title;
+
 public:
-    plot();
-    plot(int width,int height);
-    ~plot();
+    plot2D();
+    plot2D(int width,int height);
+    ~plot2D();
 
     bool init();
     void render();
@@ -103,10 +173,5 @@ public:
     const uint8_t* getBitmap();
 };
 
-class rtplot : public plot {
-
-public:
-   rtplot(int width,int height);
-};
 
 #endif // RTPLOT_H

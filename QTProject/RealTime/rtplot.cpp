@@ -1,10 +1,10 @@
 #include "rtplot.h"
 
-plot::plot() {
+plot2D::plot2D() {
 
 }
 
-plot::plot(int width,int height) {
+plot2D::plot2D(int width,int height) {
     size_chart.width = width;
     size_chart.height = height;
     if(init()) {
@@ -12,12 +12,12 @@ plot::plot(int width,int height) {
     }
 }
 
-plot::~plot() {
+plot2D::~plot2D() {
     Simd::Allocator::Free(view_chart_memory);
     Simd::Allocator::Free(view_plot_memory);
 }
 
-bool plot::init() {
+bool plot2D::init() {
     if(size_chart.height <= 0 || size_chart.width <= 0)
     {
         return false;
@@ -35,24 +35,19 @@ bool plot::init() {
     return true;
 }
 
-void plot::render() {
+void plot2D::render() {
 
 
 }
 
-int plot::getWidth(){ return size_chart.width; }
-int plot::getHeight(){return size_chart.height; }
+int plot2D::getWidth(){ return size_chart.width; }
+int plot2D::getHeight(){return size_chart.height; }
 
-const View& plot::getPlot() {
+const View& plot2D::getPlot() {
     return view_chart;
 }
 
-const uint8_t* plot::getBitmap() {
+const uint8_t* plot2D::getBitmap() {
     return view_chart.data;
-}
-
-
-rtplot::rtplot(int width,int height) : plot(width,height){
-
 }
 
