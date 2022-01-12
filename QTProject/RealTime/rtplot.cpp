@@ -1,5 +1,56 @@
 #include "rtplot.h"
 
+//DataSet
+template<>
+void DataSet::addData<std::string>(const std::vector<std::string> vector) {
+    sdatas.push_back(Data<std::string>{counter,vector});
+    ++counter;
+}
+
+template<>
+void DataSet::addData<float>(const std::vector<float> vector) {
+    fdatas.push_back(Data<float>{counter,vector});
+    ++counter;
+}
+
+template<>
+void DataSet::addData<int>(const std::vector<int> vector) {
+    idatas.push_back(Data<int>{counter,vector});
+    ++counter;
+}
+
+void DataSet::addDatai(int length, ...) {
+    va_list vl;
+
+    va_start(vl, length);
+
+    std::vector<int> temp;
+    for(int i = 0; i < length; ++i) {
+        temp.push_back(va_arg(vl,int));
+    }
+    idatas.push_back(Data<int>{counter,temp});
+    ++counter;
+
+}
+
+void DataSet::addDataf(int length, ...) {
+    va_list vl;
+
+    va_start(vl, length);
+
+    std::vector<float> temp;
+    for(int i = 0; i < length; ++i) {
+        temp.push_back((float) va_arg(vl,double));
+    }
+    fdatas.push_back(Data<float>{counter,temp});
+    ++counter;
+}
+
+void DataSet::printData(int id) {
+
+}
+
+
 plot2D::plot2D() {
 
 }
@@ -22,8 +73,10 @@ bool plot2D::init() {
     {
         return false;
     }
-    size_plot.width = (size_chart.width);
-    size_plot.height = (size_chart.height)*0.8;
+
+
+    size_plot.width = (size_chart.width) - (margins.left + margins.right);
+    size_plot.height = (size_chart.height) - (margins.top + margins.bottom) - (title.size.height);
 
     view_chart_memory = Simd::Allocator::Allocate(size_chart.width*size_chart.height*4, 16);
     view_chart = View(size_chart.width, size_chart.height, FORMAT, view_chart_memory);

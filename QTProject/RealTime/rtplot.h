@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <stdarg.h>
 #include "drawingview.h"
 #ifndef RTPLOT_H
 #define RTPLOT_H
@@ -44,7 +45,7 @@ struct TextAttribute {
 struct Title {
     std::string text;
     TextAttribute text_attribute;
-    Size size;
+    Size size = {100,50};
     Position position;
 };
 
@@ -63,17 +64,42 @@ enum class Dock {
 };
 
 //Data 관련
-enum class DataType {
-    LEG_NUM,
-    NUM_NUM
+template<typename T>
+struct Data {
+    int id;
+    std::vector<T> values;
 };
-struct DataSet{
-    std::string id;
-    DataType type;
-    std::vector<std::string> data0;
-    std::vector<float> data1;
-    std::vector<float> data2;
+
+
+class DataSet {
+private:
+    std::string name;
+    std::vector<Data<std::string>> sdatas;
+    std::vector<Data<float>> fdatas;
+    std::vector<Data<int>> idatas;
+    int counter = 0;
+
+public:
+    DataSet() : name("new dataset") {}
+    DataSet(std::string name) : name(name){}
+
+    template<typename U>
+    void addData(const std::vector<U> vector);
+
+    void addDatai(int length, ...);
+    void addDataf(int length, ...);
+
+    void deleteData(int id);
+    void deleteAll();
+
+    template<typename U>
+    std::vector<Data<U>> getDataById(int id);
+    int getID(int index);
+    int getLength();
+
+    void printData(int id);
 };
+
 class Axis {
 private:
     /*
@@ -153,7 +179,8 @@ private:
     void* view_plot_memory;
 
     std::vector<Axis> axis;
-    std::vector<DataSet> dataset;
+
+    DataSet dataset;
 
     Title title;
 

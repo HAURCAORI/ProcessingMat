@@ -52,8 +52,10 @@ int main(int argc, char *argv[])
 
 */
 
-    plot2D plot(500, 400);
-    w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
+    DataSet ds;
+    ds.addDatai(2,3,5,2);
+    //plot2D plot(500, 400);
+    //w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
 
 /*
     plot.view = View(300, 300,300*4, FORMAT, ad);
