@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    std::ios_base::sync_with_stdio(false);
+
     Simd::Pixel::Bgr24 color(0,0,255);
 
     /*
@@ -53,7 +55,15 @@ int main(int argc, char *argv[])
 */
 
     DataSet ds;
-    ds.addDatai(2,3,5,2);
+    std::vector<std::string> text;
+    text.push_back("a");
+    text.push_back("b");
+    ds.addData(text);
+    ds.addDatai(3,1,2,3);
+    ds.addDataf(3,4.0,5.0,6.0);
+    //printDataSet(ds.getDataByIndex<int>(0));
+    ds.printData();
+
     //plot2D plot(500, 400);
     //w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
 

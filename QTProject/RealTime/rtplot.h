@@ -8,6 +8,7 @@
 
 #define DEFAULT_FONT "Ubuntu-L.ttf"
 #define DEFAULT_FONT_SIZE 12
+#define ITER(TYPE,DATA) for(std::vector<TYPE>::iterator iter = DATA.begin(); iter != DATA.end(); ++iter)
 
 //Color Preset
 #define COLOR_DARK Simd::Pixel::Bgr24(0,0,0)
@@ -66,10 +67,20 @@ enum class Dock {
 //Data 관련
 template<typename T>
 struct Data {
+    using type = T;
     int id;
     std::vector<T> values;
 };
 
+template<typename T>
+inline void printDataSet(Data<T> d) {
+    std::cout << "id = " << d.id << "\n";
+    for(typename std::vector<T>::iterator it = d.values.begin(); it != d.values.end(); ++it)
+    {
+       std::cout << *it << "/";
+    }
+    std::cout << "\n";
+}
 
 class DataSet {
 private:
@@ -92,12 +103,11 @@ public:
     void deleteData(int id);
     void deleteAll();
 
-    template<typename U>
-    std::vector<Data<U>> getDataById(int id);
-    int getID(int index);
+    template <typename T>
+    Data<T>& getDataByIndex(int index);
     int getLength();
 
-    void printData(int id);
+    void printData();
 };
 
 class Axis {

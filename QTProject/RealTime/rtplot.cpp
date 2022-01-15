@@ -46,8 +46,67 @@ void DataSet::addDataf(int length, ...) {
     ++counter;
 }
 
-void DataSet::printData(int id) {
+void DataSet::deleteData(int id) {
+    //for(std::vector<Data<std::string>>::iterator iter = sdatas.begin(); iter != sdatas.end(); ++iter) {
+    ITER(Data<std::string>,sdatas) {
+        if((*iter).id == id) {
+            sdatas.erase(iter);
+            return;
+        }
+    }
+    ITER(Data<int>,idatas) {
+        if((*iter).id == id) {
+            idatas.erase(iter);
+            return;
+        }
+    }
+    ITER(Data<float>,fdatas) {
+        if((*iter).id == id) {
+            fdatas.erase(iter);
+            return;
+        }
+    }
+}
 
+void DataSet::deleteAll(){
+    sdatas.clear();
+    idatas.clear();
+    fdatas.clear();
+}
+
+template <>
+Data<int>& DataSet::getDataByIndex<int>(int index) {
+    return idatas[index];
+}
+template <>
+Data<float>& DataSet::getDataByIndex<float>(int index) {
+    return fdatas[index];
+}
+template <>
+Data<std::string>& DataSet::getDataByIndex<std::string>(int index) {
+    return sdatas[index];
+}
+
+
+int DataSet::getLength() {
+    return sdatas.size() + fdatas.size() + idatas.size();
+}
+
+void DataSet::printData() {
+    std::cout << "===== " + name + " =====" << "\n";
+    for (size_t i = 0; i < sdatas.size(); ++i) {
+        std::cout << "[StringDataSet " << i << "] : ";
+        printDataSet(sdatas[i]);
+    }
+    for (size_t i = 0; i < fdatas.size(); ++i) {
+        std::cout << "[FloatDataSet " << i << "] : ";
+        printDataSet(fdatas[i]);
+    }
+    for (size_t i = 0; i < idatas.size(); ++i) {
+        std::cout << "[IntDataSet " << i << "] : ";
+        printDataSet(idatas[i]);
+    }
+    std::cout << "====================" << "\n";
 }
 
 
