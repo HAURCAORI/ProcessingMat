@@ -59,13 +59,13 @@ int main(int argc, char *argv[])
     text.push_back("a");
     text.push_back("b");
     ds.addData(text);
-    ds.addDatai(3,1,2,3);
+    ds.addDatai(4,1,2,3,4);
     ds.addDataf(3,4.0,5.0,6.0);
     //printDataSet(ds.getDataByIndex<int>(0));
     ds.printData();
 
-    //plot2D plot(500, 400);
-    //w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
+    plot2D plot(500, 400,ds);
+    w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
 
 /*
     plot.view = View(300, 300,300*4, FORMAT, ad);

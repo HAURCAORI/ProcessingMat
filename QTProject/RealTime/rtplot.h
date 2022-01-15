@@ -18,7 +18,7 @@ typedef unsigned char Flag;
 
 //위치 및 크기 관련 struct
 struct Margin {
-    int top = 20;
+    int top = 10;
     int right = 20;
     int bottom = 20;
     int left = 20;
@@ -50,19 +50,6 @@ struct Title {
     Position position;
 };
 
-//Axis 관련 enum
-enum class AxisType {
-    NUMERICAL,
-    LEGEND,
-    SCALE
-};
-
-enum class Dock {
-    TOP,
-    RIGHT,
-    BOTTOM,
-    LEFT
-};
 
 //Data 관련
 template<typename T>
@@ -105,9 +92,34 @@ public:
 
     template <typename T>
     Data<T>& getDataByIndex(int index);
+
+    void* getData(int id);
+
+    template<typename T>
+    int getLength();
     int getLength();
 
     void printData();
+};
+
+//Axis 관련 enum
+enum class AxisType {
+    NUMERICAL,
+    LEGEND,
+    SCALE
+};
+
+enum class Dock {
+    TOP,
+    RIGHT,
+    BOTTOM,
+    LEFT
+};
+
+enum class Type {
+    STRING,
+    INT,
+    FLOAT
 };
 
 class Axis {
@@ -118,7 +130,7 @@ private:
      */
 
     //Common
-
+    const int default_size = 60;
     //NUMERICAL
     float max_value = 1.0f; // 계산값
     float min_value = 0.0f; // 계산값
@@ -130,34 +142,31 @@ private:
     float major_interval_pixel_min = 100;
     float major_interval_pixel_max = 300;
 
-    //LEGEND
-    std::vector<std::string> legend;
-    int legend_count;
-
-    //SCALE
-
 
     //Axis
     View view_axis;
     void* view_axis_memory;
 
-    std::string id;
+    int id;
+    void* values;
+    Type type;
 
     Dock dock;
 
     std::string title;
     TextAttribute text_attribute;
-    Size size_plot;
+    Size* size_plot;
     Size size;
 public:
-    Axis(std::string id,Dock dock, Size size_plot, AxisType axis_type);
-    //~Axis();
+    Axis();
+    Axis(int id, void* values, Type type, Dock dock, Size* size_plot);
+    ~Axis();
 
     //Init
     bool Init();
 
     //View
-    const View& getView();
+    View& getView();
     const uint8_t* getBitmap();
 
     //Attribute
@@ -167,6 +176,8 @@ public:
     void setFontSize(float size);
     void setFontColor(Simd::Pixel::Bgr24 color);
     Size getSize();
+    int getWidth();
+    int getHeight();
 
     //Function
     void TransformScale(float scale);
@@ -195,8 +206,8 @@ private:
     Title title;
 
 public:
-    plot2D();
     plot2D(int width,int height);
+    plot2D(int width,int height, DataSet data);
     ~plot2D();
 
     bool init();
