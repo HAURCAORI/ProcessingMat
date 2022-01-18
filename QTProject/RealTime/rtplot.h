@@ -9,6 +9,8 @@
 #define DEFAULT_FONT "Ubuntu-L.ttf"
 #define DEFAULT_FONT_SIZE 12
 
+#define ITER(TYPE,VECTOR) for(std::vector<TYPE>::iterator iter = VECTOR.begin(); iter != VECTOR.end(); ++iter)
+
 //Color Preset
 #define COLOR_DARK Simd::Pixel::Bgr24(0,0,0)
 
@@ -63,41 +65,69 @@ enum class Dock {
     LEFT
 };
 
+enum class DataType {
+    DINT,
+    DFLOAT,
+    DSTRING
+};
+
 //Data 관련
-template<typename T>
 struct Data {
     int id;
-    std::vector<T> values;
+    DataType type;
+    void* values;
 };
+
+template<typename T>
+void printVector(std::vector<T>* vec) {
+    std::cout << "Size=" << vec->size() << "\n";
+    for(size_t i = 0; i < vec->size(); ++i) {
+        std::cout << (*vec)[i] << " | ";
+    }
+    std::cout << "\n";
+}
+
+template<typename T>
+std::vector<T> createVector(int length, ...);
 
 
 class DataSet {
 private:
     std::string name;
-    std::vector<Data<std::string>> sdatas;
-    std::vector<Data<float>> fdatas;
-    std::vector<Data<int>> idatas;
+    std::vector<Data> datas;
     int counter = 0;
 
 public:
     DataSet() : name("new dataset") {}
     DataSet(std::string name) : name(name){}
 
+    template<DataType T>
+    int addData(void* values);
+    //void addDatai(int length, ...);
+    //void addDataf(int length, ...);
+
+    void deleteData(int id);
+    void deleteAll() { datas.clear(); }
+
+    Data* getDataByID(int id);
+    Data* getData(int index) { return &datas[index]; }
+    /*
     template<typename U>
     void addData(const std::vector<U> vector);
 
     void addDatai(int length, ...);
     void addDataf(int length, ...);
 
-    void deleteData(int id);
-    void deleteAll();
 
     template<typename U>
     std::vector<Data<U>> getDataById(int id);
     int getID(int index);
     int getLength();
+*/
+    void printData(Data* vector);
+    void printData(int index);
+    void printData();
 
-    void printData(int id);
 };
 
 class Axis {

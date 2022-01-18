@@ -1,5 +1,115 @@
 #include "rtplot.h"
 
+
+template<>
+int DataSet::addData<DataType::DINT>(void* values) {
+    datas.push_back(Data{counter,DataType::DINT, static_cast<std::vector<int>*>(values)});
+    return counter++;
+}
+template<>
+int DataSet::addData<DataType::DFLOAT>(void* values) {
+    datas.push_back(Data{counter,DataType::DFLOAT, static_cast<std::vector<float>*>(values)});
+    return counter++;
+}
+template<>
+int DataSet::addData<DataType::DSTRING>(void* values) {
+    datas.push_back(Data{counter,DataType::DSTRING, static_cast<std::vector<std::string>*>(values)});
+    return counter++;
+}
+
+template<>
+std::vector<int> createVector<int>(int length, ...) {
+    va_list vl;
+
+    va_start(vl, length);
+
+    std::vector<int> temp;
+    for(int i = 0; i < length; ++i) {
+        temp.push_back(va_arg(vl,int));
+    }
+    //datas.push_back(Data{counter,DataType::DINT, static_cast<std::vector<int>*>(&temp)});
+    //++counter;
+    return temp;
+}
+
+template<>
+std::vector<float> createVector<float>(int length, ...) {
+    va_list vl;
+
+    va_start(vl, length);
+
+    std::vector<float> temp;
+    for(int i = 0; i < length; ++i) {
+        temp.push_back((float)va_arg(vl,double));
+    }
+    //datas.push_back(Data{counter,DataType::DINT, static_cast<std::vector<int>*>(&temp)});
+    //++counter;
+    return temp;
+}
+
+
+/*
+void DataSet::addDataf(int length, ...) {
+    va_list vl;
+
+    va_start(vl, length);
+
+    std::vector<float> temp;
+    for(int i = 0; i < length; ++i) {
+        temp.push_back((float) va_arg(vl,double));
+    }
+    datas.push_back(Data{counter,DataType::DFLOAT, static_cast<std::vector<float>*>(&temp)});
+    ++counter;
+}
+*/
+void DataSet::deleteData(int id) {
+    ITER(Data,datas) {
+        if((*iter).id == id) {
+            datas.erase(iter);
+            break;
+        }
+    }
+}
+
+Data* DataSet::getDataByID(int id) {
+    ITER(Data, datas) {
+        if((*iter).id == id) {
+            return &(*iter);
+        }
+    }
+    return nullptr;
+}
+
+void DataSet::printData(Data* data){
+    std::cout << "Data ID : " << data->id << "/ Data Type : ";
+
+    switch (data->type) {
+    case DataType::DINT:
+        std::cout << "int / ";
+        printVector(static_cast<std::vector<int>*>(data->values));
+        break;
+    case DataType::DFLOAT:
+        std::cout << "float / ";
+        printVector(static_cast<std::vector<float>*>(data->values));
+        break;
+    case DataType::DSTRING:
+        std::cout << "string / ";
+        printVector(static_cast<std::vector<std::string>*>(data->values));
+        break;
+    }
+}
+
+void DataSet::printData(int index){
+    printData(&datas[index]);
+}
+
+void DataSet::printData() {
+    ITER(Data,datas) {
+        printData(&(*iter));
+    }
+}
+
+/*
 //DataSet
 template<>
 void DataSet::addData<std::string>(const std::vector<std::string> vector) {
@@ -19,36 +129,10 @@ void DataSet::addData<int>(const std::vector<int> vector) {
     ++counter;
 }
 
-void DataSet::addDatai(int length, ...) {
-    va_list vl;
 
-    va_start(vl, length);
 
-    std::vector<int> temp;
-    for(int i = 0; i < length; ++i) {
-        temp.push_back(va_arg(vl,int));
-    }
-    idatas.push_back(Data<int>{counter,temp});
-    ++counter;
+*/
 
-}
-
-void DataSet::addDataf(int length, ...) {
-    va_list vl;
-
-    va_start(vl, length);
-
-    std::vector<float> temp;
-    for(int i = 0; i < length; ++i) {
-        temp.push_back((float) va_arg(vl,double));
-    }
-    fdatas.push_back(Data<float>{counter,temp});
-    ++counter;
-}
-
-void DataSet::printData(int id) {
-
-}
 
 
 plot2D::plot2D() {
@@ -73,7 +157,6 @@ bool plot2D::init() {
     {
         return false;
     }
-
 
     size_plot.width = (size_chart.width) - (margins.left + margins.right);
     size_plot.height = (size_chart.height) - (margins.top + margins.bottom) - (title.size.height);

@@ -53,7 +53,19 @@ int main(int argc, char *argv[])
 */
 
     DataSet ds;
-    ds.addDatai(2,3,5,2);
+    std::vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+    //ds.addData<DataType::DINT>(&vec);
+    std::vector<std::string> vec0 = {"a","b","c","d"};
+    std::vector<int> vec2 = createVector<int>(5,1,2,3,4,5);
+    std::vector<float> vec3 = createVector<float>(5,2.0,2.0,3.0,4.0,5.0);
+    ds.addData<DataType::DSTRING>(&vec0);
+    ds.addData<DataType::DINT>(&vec2);
+    ds.addData<DataType::DFLOAT>(&vec3);
+    //ds.printData();
+
     //plot2D plot(500, 400);
     //w.setImage(plot.getWidth() ,plot.getHeight(), (uchar*) plot.getBitmap());
 
